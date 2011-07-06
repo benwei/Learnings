@@ -3,6 +3,7 @@
 // Javascript no protected methods
 // Wild Animals
 
+// pure virtual function
 Life = {
 	lifeBegin : function() {
 		this.alive = true;
@@ -80,7 +81,6 @@ Dog.prototype.listInfo=function() {
 	Animals.prototype.listInfo.call(this);
 }
 
-
 // main
 var aAnimal = new Animals('Asimo');
 var pet = new Dog('Popo');
@@ -93,3 +93,4 @@ pet.listInfo();
 rabbit.addBaby(new Rabbit('Cuta'));
 rabbit.dead();
 rabbit.listInfo();
+
