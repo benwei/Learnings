@@ -1,4 +1,5 @@
 // @file animals-inherit.js
+// reference: http://phrogz.net/js/classes/OOPinJS2.html
 // Javascript no protected methods
 // Wild Animals
 
