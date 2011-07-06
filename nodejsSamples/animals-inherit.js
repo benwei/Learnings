@@ -1,4 +1,5 @@
 // @file animals-inherit.js
+// Javascript no protected methods
 // Animals class
 function Animals(name){ 
 	this.name=name;
@@ -10,15 +11,35 @@ Animals.prototype.addBaby=function(newBaby){
 } 
 
 Animals.prototype.listInfo=function(){ 
-	console.log("Your pet has " +  pet.babies.length + (pet.babies.length >=2 ? " baby":" babies")); 
-	for (var i = 0 ; i < pet.babies.length; i++) {
-		console.log("baby" + i + ": " + pet.babies[i]); 
+	if (this.babies.length == 0) return ;
+	console.log("Your pet("+this.name+") has " +  this.babies.length + (this.babies.length >=2 ? " baby":" babies")); 
+	for (var i = 0 ; i < this.babies.length; i++) {
+		console.log("baby" + i + ": " + this.babies[i]); 
 	}
 }
 
 Animals.prototype.toString=function(){ 
 	return '[Animals "'+this.name+'"]';
 } 
+
+// Rabbits
+Rabbit.prototype = new Animals();
+Rabbit.prototype.constructor = Rabbit;
+// add parent to make simple to use super methods
+Rabbit.prototype.parent = Animals.prototype;
+
+function Rabbit(name){
+	this.name = name
+}
+
+Rabbit.prototype.toString=function(){ 
+	return '[Rabbit "'+this.name+'"]';
+} 
+
+Rabbit.prototype.listInfo=function() {
+	console.log('--> '+this.name+' has two long ears.' );
+	this.parent.listInfo.call(this);
+}
 
 // Dog class 
 Dog.prototype = new Animals(); 
@@ -31,11 +52,20 @@ Dog.prototype.toString=function(){
 	return '[Dog "'+this.name+'"]';
 } 
 
+Dog.prototype.listInfo=function() {
+	console.log('--> '+this.name+' has four legs.' );
+	// call suppr methods of Animals
+	Animals.prototype.listInfo.call(this);
+}
+
 // main
 var aAnimal = new Animals('Asimo');
 var pet = new Dog('Popo');
+var rabbit = new Rabbit('Longear');
 console.log('Animal is '+aAnimal);
 console.log('Your pet is '+pet);      
 pet.addBaby(new Dog('Roro')); 
 pet.addBaby(new Dog('Puka')); 
 pet.listInfo();
+rabbit.addBaby(new Rabbit('Cuta'));
+rabbit.listInfo();
