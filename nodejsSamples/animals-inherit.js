@@ -1,6 +1,21 @@
 // @file animals-inherit.js
 // Javascript no protected methods
-// Animals class
+// Wild Animals
+
+Life = {
+	lifeBegin : function() {
+		this.alive = true;
+	},
+	lifeEnd : function() {
+		this.alive = false;
+	}
+}
+
+// Animals class is have virtual function from Life
+
+Animals.prototype = Life;
+Animals.prototype.parent = Life;
+
 function Animals(name){ 
 	this.name=name;
 	this.babies=[];
@@ -8,9 +23,11 @@ function Animals(name){
 
 Animals.prototype.addBaby=function(newBaby){ 
 	this.babies.push(newBaby);
+	this.lifeBegin.call(this);
 } 
 
 Animals.prototype.listInfo=function(){ 
+	console.log('Your pet is ' + ((this.alive) ? 'alive' : 'dead') + '.' );
 	if (this.babies.length == 0) return ;
 	console.log("Your pet("+this.name+") has " +  this.babies.length + (this.babies.length >=2 ? " baby":" babies")); 
 	for (var i = 0 ; i < this.babies.length; i++) {
@@ -21,6 +38,10 @@ Animals.prototype.listInfo=function(){
 Animals.prototype.toString=function(){ 
 	return '[Animals "'+this.name+'"]';
 } 
+
+Animals.prototype.dead=function() {
+	this.parent.lifeEnd.call(this);
+}
 
 // Rabbits
 Rabbit.prototype = new Animals();
@@ -58,6 +79,7 @@ Dog.prototype.listInfo=function() {
 	Animals.prototype.listInfo.call(this);
 }
 
+
 // main
 var aAnimal = new Animals('Asimo');
 var pet = new Dog('Popo');
@@ -68,4 +90,5 @@ pet.addBaby(new Dog('Roro'));
 pet.addBaby(new Dog('Puka')); 
 pet.listInfo();
 rabbit.addBaby(new Rabbit('Cuta'));
+rabbit.dead();
 rabbit.listInfo();
