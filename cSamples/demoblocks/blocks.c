@@ -1,11 +1,3 @@
-/*
- *  blocks.c
- *  demoblocks
- *
- *  Created by boslab on 6/30/11.
- *  Copyright 2011 boslab. All rights reserved.
- *
- */
 #include <Block.h>
 #include <stdio.h>
 
@@ -14,7 +6,7 @@ typedef int (^IntBlock)();
 
 // In mathematics, an arithmetic progression (AP) or arithmetic sequence is a sequence of
 // numbers such that the difference of any two successive members of the sequence is a constant. For instance, the sequence 3, 5, 7, 9, 11, 13,
-// … is an arithmetic progression with common difference 2.
+// it is an arithmetic progression with common difference 2.
 
 IntBlock mathAP(int firstTerm, int difference) {
 	__block int  computeTerm = firstTerm;
@@ -38,7 +30,6 @@ int mathAPloop(int n, IntBlock blockAP)
 int main() {
 	
 	IntBlock blockAP = mathAP(1, 3);
-	
 	
 	mathAPloop(10, blockAP);
 	
