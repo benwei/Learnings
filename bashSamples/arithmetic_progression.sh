@@ -5,6 +5,8 @@
 # Output: display each term and sum.
 # formula:
 #   a_n = a_m + (n - m)*d
+# reference:
+#   http://en.wikipedia.org/wiki/Arithmetic_progression
 
 APSequence()
 {
