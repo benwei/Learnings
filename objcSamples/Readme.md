@@ -2,17 +2,24 @@
   This is a experiments for GNUStep and GNU objc
 
 # Setup in Ubuntu
- I only tested it on Ubuntu 10.10.
+
+ - I only tested it on Ubuntu 10.10.
 
 ## Install gobjc
-  sudo apt-get install gobjc
+
+ - sudo apt-get install gobjc
 
 ## Install gnustep
-  sudo apt-get install gnustep
-  sudo apt-get install gnustep-devel
+
+ - sudo apt-get install gnustep
+ - sudo apt-get install gnustep-devel
 
 # Build procedure
-  make 
+
+ - cd hello-objc-linux 
+ - make 
 
 # Testing
-  make run
+ - cd hello-objc-linux
+ - make run
+
