@@ -1,21 +1,12 @@
-STEPFLAGS= $(shell gnustep-config --objc-flags) -lgnustep-base
-OBJCFLAGS= -g $(STEPFLAGS) -O
-OBJCFILES= hello.m main.m
-OBJS = $(OBJCFILES:.m=.o)
+dirs=$(wildcard *)
 
-.SUFFIXES: .m .o
-
-all: hello 
-
-.m.o:
-	$(CC) $(OBJCFLAGS) -c $<
-
-hello: $(OBJS)
-	$(CC) -o $@ $^ -lobjc -lgnustep-base
-
-run: hello
-	./$^
+all:
+	@echo "do nothing. this makefile is used for "make clean" before rsync"
 
 clean:
-	rm -f *.o *.d hello
-
+	@for i in $(dirs) ; do \
+	if [ -d $$i -a -f "$$i/Makefile" ]; then \
+	echo make -C $$i clean ; \
+	make -C $$i clean ; \
+	fi \
+	done
