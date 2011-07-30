@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Pratice1-jquery samples from loading something</title>
+	<style>
+	a.testbold { font-weight: bold; }
+	p.testbold { font-weight: bold; background:gray; width:200px;}
+	p {  background:white; width:200px;}
+	.testbold  { font-weight: bold; }
+	td {background:yellow;}
+	input {background:#AAAAAF;}
+	</style>
+</head>
+<body>
+	0729-ben: try by experments
+	Code works with jquery-1.6.2 in chrome 12.0, Firefox 5.0 and IE 8.0.<br/>
+	(ps: jquery-1.5 .load() is not working.)
+	<table border=1 cellspacing=0><tr><td>
+	<a id="btnTest" href="">Test Selection</a></td><td>
+	<a id="btnLoad" href="">Load(/test.txt)</a></td><td>
+	<a id="btnToggle" href="">Hide details</a></td><td>
+	<a id="btnHideSlow" href="">Hide details Slowly</a></td></tr>
+	</table>
+	<script src="/jquery-1.6.2.js"></script>
+	<hr>
+	<div id="containter">
+	<div id="message">This section is used for the selection testing and contents replacing.</div>
+	<div id="testbar"></div>
+	<div>
+	<p id="p1" class="menuitem">test1</p>
+	<p id="p2" class="menuitem">test2</p>
+	<p id="p3" class="menuitem">test3</p>
+	<p id="p4" class="menuitem">test4</p>
+	</div>
+	<hr>
+	try the get by .val() and set with .val(xxx)
+	<hr>
+	<input type="text" value="some text"/>
+	<table border=1 cellspacing=1>
+		<tr><td colspan=2><div id="codeTitle" class="testbold">Load testing</div></td></tr>
+		<tr><td>Name:</td><td><div id="codeFilename"></div></td></tr>
+		<tr><td>Content:</td><td><div id="code"></div></td></tr>
+	</table>
+	</div>
+<script>
+	 var i = 0;
+	 var arr = new Array("p:first", "#p2", "#p3", "p:last");
+	 var isContentsShow = 1;
+	 $(document).ready(function(){
+		// change all hyperlink with bold font
+		$("a").each(function (index) {
+			$(this).addClass("testbold");
+		});
+
+		$(function() {
+		   $('.menuitem').hover( function(){
+	        	$(this).css('background-color', '#00FF00');
+				    },
+		       function(){
+		             $(this).css('background-color', '#FFFFFF');
+		        });
+		});
+		$("p").click(function(event) {
+			$("#testbar").text("menu click: " + $(this).attr("id"));
+		});
+
+
+		$("#btnHideSlow").click(function(event) {
+			event.preventDefault();
+			$("#containter").hide("slow");
+		   	$("#btnToggle").text("Show Contents")
+			isContentsShow = 0;
+		});
+
+		$("#btnToggle").click(function(event) {
+			event.preventDefault();
+			if (isContentsShow) {
+		   		$(this).text("Show Contents")
+				isContentsShow = 0;
+				$("#containter").toggle();
+			} else {
+		   		$(this).text("Hide Contents")
+				$("#containter").toggle();
+				isContentsShow = 1;
+			}
+		});
+
+		$("#btnLoad").click(function(event) {
+		   event.preventDefault();
+		   // not working with jquery 1.5 from goolge api, you need to use new version.
+		   // loading external files failed because Ajax disallow 
+		   // for cross-domain loading of content.
+		   var url = "test1.txt";
+		   $("#codeFilename").text(url);
+		   // both of load(), get() work well with jquery-1.6.2
+		   // $("#code").load(url); 
+		   $.get(url, function(data){
+			  $("#code").html(data);
+			}); 
+		   $("#code").ajaxError(function(event, request, settings){
+			  $(this).text("Error requesting page " + url + "please create test.txt at some location.");
+			});	 
+		});
+
+		$("input").keyup(function(event){
+		   var value = $(this).val();
+		   	$("#testbar").text("from textbox:" + value);
+		   }).blur(function (e) {
+		   	$("#testbar").text("changed from textbox:" + value);
+	           });
+
+		$("#btnTest").click(function(event){
+		  event.preventDefault();
+		  // alert("As you can see, the link no longer took you to jquery.com");
+		  $("p:first").text("updated first");
+		  $("#p2").text("update 2");
+		  $("#p3").text("update 3");
+		  $("p:last").text("current selected index:" + i);
+
+		  $("p").each(function(index) {
+			if (index != i) {
+				$(arr[index]).removeClass("testbold");
+			} else {
+				$(arr[i]).addClass("testbold");
+			}
+		  });
+		  $("input").val(arr[i]); // use val, not effect .change() and .blur()
+		  $("input").keyup(); // do this if you want to trigger .change() and .blur()
+		  if (++i>=4) i = 0;
+		});
+	 });
+</script>
+</body>
+</html>
