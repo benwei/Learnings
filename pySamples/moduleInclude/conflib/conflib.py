@@ -9,3 +9,6 @@ class conflib(confbase):
 
     def show(self):
         print self.getName()
+
+    def sayHello(self):
+        print "Hello, %s!" % (self.getName())
