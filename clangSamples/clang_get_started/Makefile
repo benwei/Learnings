@@ -20,3 +20,5 @@ print_from_ast: t.c
 code_gen_with_llvm: t.c
 	clang $^ -S -emit-llvm -o -
 	clang -fomit-frame-pointer -O3 -S -o - t.c # On x86_64
+
+clean:
