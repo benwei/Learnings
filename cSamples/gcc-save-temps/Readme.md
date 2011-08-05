@@ -4,7 +4,7 @@
  - .i  the source code after preprocessor procceed
  - .s  the assembly code gcc created
 
- Both of them is useful while you want to know what the machine code is from C functions.<br/>
+ Both of them is useful while you want to know what the assembly code is from C functions.<br/>
  You can clear know what the preprocessor and optimazation does by comparing .s files
  from code appending flags -O2 or without -O option.<br/>
  you can leverage the information to reverse the binary file to assembly and then assembly to c files.<br/>
