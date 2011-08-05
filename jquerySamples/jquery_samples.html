@@ -5,8 +5,12 @@
 	<title>Pratice1-jquery samples from loading something</title>
 	<style>
 	a.testbold { font-weight: bold; }
-	p.testbold { font-weight: bold; background:gray; width:200px;}
-	p {  background:white; width:200px;}
+	p.testbold { font-weight: bold; background:gray;}
+	p {  background:white; width:200px; height:0x; padding:0px; line-height: 25px;
+		// add margin
+		text-indent: 0em; margin-top: 0em; margin-bottom:0em;
+		border-top:1px solid #FFFFF;
+	}
 	.testbold  { font-weight: bold; }
 	td {background:yellow;}
 	input {background:#AAAAAF;}
@@ -26,13 +30,20 @@
 	<hr>
 	<div id="containter">
 	<div id="message">This section is used for the selection testing and contents replacing.</div>
-	<div id="testbar"></div>
-	<div>
-	<p id="p1" class="menuitem">test1</p>
-	<p id="p2" class="menuitem">test2</p>
-	<p id="p3" class="menuitem">test3</p>
-	<p id="p4" class="menuitem">test4</p>
-	</div>
+	<table border=1 cellspacing=0>
+	<tr><td>
+	<table border=1 cellspacing=0>
+	<tr><td>
+	<p id="menuitem1" class="menuitem">test1</p>
+	</td></tr><tr><td>
+	<p id="menuitem2" class="menuitem">test2</p>
+	</td></tr><tr><td>
+	<p id="menuitem3" class="menuitem">test3</p>
+	</td></tr><tr><td>
+	<p id="menuitem4" class="menuitem">test4</p>
+	</td></tr></table>
+	</td><td>
+	<div id="testbar"></div></td></tr></table>
 	<hr>
 	try the get by .val() and set with .val(xxx)
 	<hr>
@@ -43,9 +54,11 @@
 		<tr><td>Content:</td><td><div id="code"></div></td></tr>
 	</table>
 	</div>
+	<hr>
+	<a id="jtop" href="" alt="Top">Top</a>
 <script>
 	 var i = 0;
-	 var arr = new Array("p:first", "#p2", "#p3", "p:last");
+	 var arr = new Array("p:first", "#menuitem2", "#menuitem3", "p:last");
 	 var isContentsShow = 1;
 	 $(document).ready(function(){
 		// change all hyperlink with bold font
@@ -74,16 +87,17 @@
 		});
 
 		$("#btnToggle").click(function(event) {
-			event.preventDefault();
 			if (isContentsShow) {
 		   		$(this).text("Show Contents")
 				isContentsShow = 0;
-				$("#containter").toggle();
+				$("#containter").toggle("slow");
 			} else {
 		   		$(this).text("Hide Contents")
-				$("#containter").toggle();
+				$("#containter").toggle("slow");
 				isContentsShow = 1;
 			}
+			// the follow line, like event.preventDefault();
+			return false;
 		});
 
 		$("#btnLoad").click(function(event) {
@@ -91,7 +105,7 @@
 		   // not working with jquery 1.5 from goolge api, you need to use new version.
 		   // loading external files failed because Ajax disallow 
 		   // for cross-domain loading of content.
-		   var url = "test1.txt";
+		   var url = "test.txt";
 		   $("#codeFilename").text(url);
 		   // both of load(), get() work well with jquery-1.6.2
 		   // $("#code").load(url); 
@@ -110,12 +124,18 @@
 		   	$("#testbar").text("changed from textbox:" + value);
 	           });
 
+		// animate to scroll top 0
+		$("#jtop").click(function(event) {
+		   $("html,body").animate({scrollTop:0}, 1024);
+		   return false;
+		});
+
 		$("#btnTest").click(function(event){
 		  event.preventDefault();
 		  // alert("As you can see, the link no longer took you to jquery.com");
 		  $("p:first").text("updated first");
-		  $("#p2").text("update 2");
-		  $("#p3").text("update 3");
+		  $("#menuitem2").text("update 2");
+		  $("#menuitem3").text("update 3");
 		  $("p:last").text("current selected index:" + i);
 
 		  $("p").each(function(index) {
