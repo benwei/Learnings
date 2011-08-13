@@ -1,28 +1,41 @@
 # this sample is tested on cygwin + windows xp
-
+KNAMEFULL  = $(shell uname -s | sed 's/_.*//g')
+# cygwin on windows xp
+# CYGWIN_NT-5.1
+KNAME = $(KNAMEFULL)
+ifeq ($(KNAME),CYGWIN)
 EXEEXT = .exe
 DLLEXT = .dll
+else
+EXEEXT =
+DLLEXT = .so
+endif
+CFLAGS = -Wall
+CFILES = main.c
+OBJS= $(CFILES:.c=.o)
 LIBNAME= test
 
 all: run
 
-foo$(EXEEXT): main.c  $(LIBNAME)$(DLLEXT)
-	$(CC) -o $@ $^ -l$(LIBNAME) -L.
+.c.o:
+	$(CC) -c -o $@ $<  $(CFLAGS)
 
-$(LIBNAME)$(DLLEXT): test.c
+foo$(EXEEXT): $(OBJS) $(LIBNAME)$(DLLEXT)
+	$(CC) -o $@ $(OBJS) -l$(LIBNAME) -L.
+
+$(LIBNAME)$(DLLEXT): test.o
 	$(CC) -o $@ -shared $^
 
 run: foo$(EXEEXT)
 	@./foo.exe ; if [ $$? -eq 3 ]; then \
-	  echo "binary link passed" ; \
+	  echo "Binary linking passed" ; \
 	  python main.py ; \
-	  if [ $$? -eq 4 ] ; then \
-	  echo "python load passed" ; \
-	  else \
-	  echo "python load failed" ; \
+	  if [ $$? -ne 0 ] ; then \
+	  	exit 1; \
 	  fi \
 	else \
-	  echo "binary link failed" ; \
+	  echo "Binary link failed" ; \
 	fi
 clean:
 	rm -f foo$(EXEEXT) $(LIBNAME)$(DLLEXT)
+	rm -f *.o
