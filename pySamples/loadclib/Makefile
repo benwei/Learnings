@@ -7,13 +7,15 @@ ifeq ($(KNAME),CYGWIN)
 EXEEXT = .exe
 DLLEXT = .dll
 else
+# testing on ubuntu
 EXEEXT =
 DLLEXT = .so
 endif
 CFLAGS = -Wall
 CFILES = main.c
 OBJS= $(CFILES:.c=.o)
-LIBNAME= test
+LIBNAME= libtest
+LDFLAGS= -ltest -L.
 
 all: run
 
@@ -21,15 +23,16 @@ all: run
 	$(CC) -c -o $@ $<  $(CFLAGS)
 
 foo$(EXEEXT): $(OBJS) $(LIBNAME)$(DLLEXT)
-	$(CC) -o $@ $(OBJS) -l$(LIBNAME) -L.
+	$(CC) -o $@ $(OBJS) $(LDFLAGS)
 
 $(LIBNAME)$(DLLEXT): test.o
 	$(CC) -o $@ -shared $^
 
 run: foo$(EXEEXT)
-	@./foo.exe ; if [ $$? -eq 3 ]; then \
+	@ export LD_LIBRARY_PATH=.; ./$^ ; \
+	  if [ $$? -eq 3 ]; then \
 	  echo "Binary linking passed" ; \
-	  python main.py ; \
+	  python main.py $(LIBNAME)$(DLLEXT) ; \
 	  if [ $$? -ne 0 ] ; then \
 	  	exit 1; \
 	  fi \

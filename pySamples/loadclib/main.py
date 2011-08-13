@@ -2,8 +2,13 @@
 # this sample is tested on cygwin + windows xp
 
 from ctypes import *
+import sys
 
-libname = "test.dll"
+if len(sys.argv) <= 1:
+    print "syntax: <libname>"
+    exit(1)
+
+libname = sys.argv[1]
 
 try:
     foolib = cdll.LoadLibrary(libname)
