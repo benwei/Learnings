@@ -4,7 +4,7 @@ mk-nothing:
 
 mk-clean:
 	@for i in $(dirs) ; do \
-	if [ -d $$i -a -f \"$$i/Makefile\" ]; then \
+	if [ -d $$i -a -f "$$i/Makefile" ]; then \
 	echo make -C $$i clean ; \
 	make -C $$i clean ; \
 	fi \
