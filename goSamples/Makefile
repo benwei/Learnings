@@ -1,6 +1,6 @@
 dirs=$(wildcard *)
 
-all: mk-nothing
+all: mk-build
 
 clean: mk-clean
 include ../mk.rules
