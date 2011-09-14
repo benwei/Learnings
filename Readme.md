@@ -9,6 +9,7 @@ clangSample   => clang in experiments<br>
 bashSamples   => bash shell utility<br>
 jquerySamples => experiments for jquery<br>
 gasSamples    => gnu assembly Samples<br>
+goSamples     => go language Samples<br>
 luaSamples    => lua practice while I were writting plugin for WOW <br>
 nodejsSamples => Node.js using Javascrtip as web<br>
 objcSamples   => Objective-C Samples<br>
