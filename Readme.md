@@ -7,6 +7,7 @@ This is used to tracking what I practice from learnring the programming language
 cSamples      => C lanaguages in practice<br>
 clangSample   => clang in experiments<br>
 bashSamples   => bash shell utility<br>
+djangoSamples => python web framework<br>
 jquerySamples => experiments for jquery<br>
 gasSamples    => gnu assembly Samples<br>
 goSamples     => go language Samples<br>
