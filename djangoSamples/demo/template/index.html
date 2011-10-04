@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{title|upper}}<br>
+{% endblock %}
+{% block footer %}
+index template {{name|truncatewords:"3"}}<br>
+{{age}}<br>
+{% endblock %}
