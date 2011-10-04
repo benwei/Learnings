@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 import sys
 # if you want to set default encoding setdefaultencodeing()
 # /Library/Python/[version]/site-packages/sitecustomize.py
