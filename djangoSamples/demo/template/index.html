@@ -5,5 +5,15 @@
 {% endblock %}
 {% block footer %}
 index template {{name|truncatewords:"3"}}<br>
-{{age}}<br>
+
+<FORM ACTION="{{form_action}}" METHOD=POST> {% csrf_token %}
+your comments:<BR>
+<TEXTAREA NAME="comments" COLS=40 ROWS=6></TEXTAREA>
+<P><INPUT TYPE=SUBMIT VALUE="submit">
+</FORM>
+<br>
+<table broder=1 cellspacing=0>
+{% for o in comments %}
+    <tr><td>{{o.pub_date}}: {{o.comments}}</td></tr>
+{% endfor %}
 {% endblock %}
