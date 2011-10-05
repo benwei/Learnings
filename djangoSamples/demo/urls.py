@@ -7,6 +7,7 @@ from django.conf.urls.defaults import patterns, include, url
 urlpatterns = patterns('controllers',
     (r'^$', 'polls.index'),
     (r'^polls/$', 'polls.index'),
+    (r'^post/new$', 'post.new'),
     (r'^polls/(?P<poll_id>\d+)/$', 'polls.detail'),
     # Examples:
     # url(r'^$', 'demo.views.home', name='home'),
