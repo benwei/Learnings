@@ -7,13 +7,16 @@
 index template {{name|truncatewords:"3"}}<br>
 
 <FORM ACTION="{{form_action}}" METHOD=POST> {% csrf_token %}
+your id:<br>
+<INPUT TYPE="text" NAME="creator_id" MaxLength='3' value='0'><br>
 your comments:<BR>
 <TEXTAREA NAME="comments" COLS=40 ROWS=6></TEXTAREA>
 <P><INPUT TYPE=SUBMIT VALUE="submit">
 </FORM>
 <br>
 <table broder=1 cellspacing=0>
+{% load post_extra %}
 {% for o in comments %}
-    <tr><td>{{o.pub_date}}: {{o.comments}}</td></tr>
+    <tr><td>{{o.pub_date}}[{{o.creator_id|getName}}]: {{o.comments}}</td></tr>
 {% endfor %}
 {% endblock %}
