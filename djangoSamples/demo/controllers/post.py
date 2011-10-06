@@ -25,8 +25,9 @@ def new(request):
 
         if len(comments) > 0:
            writeComments(cid, comments)
-
-    c = {'form_action': '/post/new', 'comments':notes.objects.all()}
+    userDict = {'1': 'Bill Gates', '2': 'Steve Jobs'}
+    c = {'form_action': '/post/new',\
+         'comments':notes.objects.all(), 'userInfo': userDict}
     c.update(csrf(request))
     t = loader.get_template('index.html')
     ctx = Context(c)

@@ -17,6 +17,6 @@ your comments:<BR>
 <table broder=1 cellspacing=0>
 {% load post_extra %}
 {% for o in comments %}
-    <tr><td>{{o.pub_date}}[{{o.creator_id|getName}}]: {{o.comments}}</td></tr>
+    <tr><td>{{o.pub_date}}[{{o.creator_id|getName:userInfo}}]: {{o.comments}}</td></tr>
 {% endfor %}
 {% endblock %}
