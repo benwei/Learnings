@@ -8,6 +8,7 @@ urlpatterns = patterns('controllers',
     (r'^$', 'polls.index'),
     (r'^polls/$', 'polls.index'),
     (r'^post/new$', 'post.new'),
+    (r'^post/show$', 'post.show'),
     (r'^polls/(?P<poll_id>\d+)/$', 'polls.detail'),
     # Examples:
     # url(r'^$', 'demo.views.home', name='home'),
