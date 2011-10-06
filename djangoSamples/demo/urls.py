@@ -5,7 +5,7 @@ from django.conf.urls.defaults import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('controllers',
-    (r'^$', 'polls.index'),
+    (r'^$', 'post.new'),
     (r'^polls/$', 'polls.index'),
     (r'^post/new$', 'post.new'),
     (r'^post/show$', 'post.show'),

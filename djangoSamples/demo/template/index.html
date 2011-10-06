@@ -1,22 +1,22 @@
 {% extends "base.html" %}
-
-{% block title %}
-{{title|upper}}<br>
-{% endblock %}
-{% block footer %}
-index template {{name|truncatewords:"3"}}<br>
+{% block content %}
+python + django with data model notes {{version}}<br>
 
 <FORM ACTION="{{form_action}}" METHOD=POST> {% csrf_token %}
 your id:<br>
 <INPUT TYPE="text" NAME="creator_id" MaxLength='3' value='0'><br>
 your comments:<BR>
-<TEXTAREA NAME="comments" COLS=40 ROWS=6></TEXTAREA>
+<TEXTAREA NAME="comments" COLS=36 ROWS=4></TEXTAREA>
 <P><INPUT TYPE=SUBMIT VALUE="submit">
 </FORM>
 <br>
-<table broder=1 cellspacing=0>
+
+<B>Notes:</B>
 {% load post_extra %}
 {% for o in comments %}
-    <tr><td>{{o.pub_date}}[{{o.creator_id|getName:userInfo}}]: {{o.comments}}</td></tr>
+<hr><table border=0><tr>
+<td><b>{{o.creator_id|getName:userInfo}}</b>:</td>
+<td>{{o.comments}} </td></tr></table>
+</tr><tr><td>{{o.pub_date|date:"N j,Y H:iA"}}</td>
 {% endfor %}
 {% endblock %}

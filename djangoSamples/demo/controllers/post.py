@@ -16,7 +16,7 @@ def writeComments(cid, data):
     p.save()
 
 def show(request):
-    return HttpResponseRedirect('/post/new')
+    return HttpResponseRedirect('/')
 
 def new(request):
     comments = ''
@@ -37,7 +37,7 @@ def new(request):
 
     userDict = {'1': 'Bill Gates', '2': 'Steve Jobs'}
     c = {'form_action': '/post/new',\
-         'comments':notes.objects.all(), 'userInfo': userDict}
+         'comments':notes.objects.order_by('-pub_date'), 'userInfo': userDict}
     c.update(csrf(request))
     t = loader.get_template('index.html')
     ctx = Context(c)
