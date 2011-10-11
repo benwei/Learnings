@@ -1,0 +1,4 @@
+<form action="/upload/create" method="post" enctype="multipart/form-data"> {% csrf_token %}
+    <input type="file" name="uploadfile"/>
+    <input type="submit" name="submit" value="Upload" />
+</form>
