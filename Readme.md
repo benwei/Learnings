@@ -12,6 +12,7 @@ jquerySamples => experiments for jquery<br>
 gasSamples    => gnu assembly Samples<br>
 goSamples     => go language Samples<br>
 luaSamples    => lua practice while I were writting plugin for WOW <br>
+makeSamples   => makefile Samples<br>
 nodejsSamples => Node.js using Javascrtip as web<br>
 objcSamples   => Objective-C Samples<br>
 pySamples     => Python programming languages<br>
