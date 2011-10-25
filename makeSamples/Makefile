@@ -17,16 +17,15 @@ $(debug-leave)
 endef
 
 define build-vars
-$(eval files := $(wildcard *.c))
-$(eval exes := $(files:.c=.exe))
-$(eval objs := $(files:.c=.o))
+	$(eval files:= hello.c $(tempfile)) 
+	$(eval exes= $(files:.c=.exe))
 endef
 
 define dump-vars
-echo $(files)
-echo $(exes)
-echo $(objs)
+	@echo "$(files) -> $(exes)";
 endef
+
+tempfile=hello-temp.c
 
 all:
 # check variable state 
@@ -38,37 +37,42 @@ endif
 	@echo INNERVAR is defined with \'$(INNERVAR)\'
 	@echo "call define(testvargs)"
 	# call for arguments
-	if [ ! -f hello1.c ]; then \
-	   cp hello.c hello1.c; \
-	fi
-	$(build-vars)
 	@$(call testvargs,1,2,3,4)
-	$(dump-vars)
-	make -s mk-test exes="$(exes)" objs="$(objs)"
+	@if [ ! -f "$(tempfile)" ] ; then \
+	   cp hello.c $(tempfile); \
+	   echo "cp hello.c $(tempfile)" ; \
+	fi 
+	make -s mk-prebuild
 
-
-define build-objs
-	echo "building[$<]->[$@]"
-	$(CC) -DINDEX=$(index) -c $< -o $@  
-endef
-index=1
-
-define incindex
-	$(eval index:=$(shell expr $(index) + 1)) 
-endef
 
 .c.o:
-	@echo "index=$(index)"
-	$(build-objs)
-	$(incindex)
+	echo "building[$<]->[$@] with index($(index))"
+	$(CC) -DINDEX=$(index) -c $< -o $@  
 
-define build-exes
-	dst="$@";obj="$${dst%.exe}.o";\
+define build-exe
+	dst="$(1)";obj="$${dst%.exe}.o";\
 	echo "building[$${obj}]->[$@]";\
-	gcc -o $@ $${obj}
+	gcc -o $(1) $${obj}
 endef
 
-mk-test: $(exes)
+mk-prebuild: 
+	$(build-vars)
+	$(dump-vars)
+	make mk-build exes="$(exes)"
+
+mk-build: 
+	index=1 ; \
+	for i in $(exes) ; do \
+	   make exename=$$i objname=$${i%.exe}.o $$i index=$$index ; \
+	   echo make $$i index=$$index ; \
+           index=`expr $$index + 1` ; \
+	done
+
+hello.exe:hello.o
+	$(call build-exe,$@,$<)
+
+hello-temp.exe: hello-temp.o
+	$(call build-exe,$@,$<)
 
 run:
 	$(build-vars)	
@@ -77,9 +81,7 @@ run:
 	 ./$$i ;  \
 	done
 
-$(exes): $(objs)
-	$(call build-exes,$@)
 
 clean:
 	$(build-vars)
-	rm -f *.o $(exes)
+	rm -f *.o $(exes) $(tempfile)
