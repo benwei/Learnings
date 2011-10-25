@@ -5,8 +5,6 @@ register = template.Library()
 
 # sample for stringfilter for template
 @stringfilter
-
-
 def getName(value, userInfo): 
     try:
        name = userInfo[value]

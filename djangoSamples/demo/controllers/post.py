@@ -1,4 +1,3 @@
-
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, loader
 from django import forms

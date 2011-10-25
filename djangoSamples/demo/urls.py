@@ -6,10 +6,17 @@ from django.conf.urls.defaults import patterns, include, url
 
 urlpatterns = patterns('controllers',
     (r'^$', 'post.new'),
+    # polls
     (r'^polls/$', 'polls.index'),
+    (r'^polls/(?P<poll_id>\d+)/$', 'polls.detail'),
+    # post
     (r'^post/new$', 'post.new'),
     (r'^post/show$', 'post.show'),
-    (r'^polls/(?P<poll_id>\d+)/$', 'polls.detail'),
+    # upload
+    (r'^upload/new$', 'upload.new'),
+    (r'^upload/create$', 'upload.create'),
+    (r'^upload/redirect$', 'upload.redirect'),
+    (r'^upload/show$', 'upload.show'),
     # Examples:
     # url(r'^$', 'demo.views.home', name='home'),
     # url(r'^demo/', include('demo.foo.urls')),
