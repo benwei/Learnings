@@ -10,7 +10,12 @@ class Date8601:
 
     def to8601String(self):
         return self.date.strftime(FMT8601String)
+
     def addDelta(self, sourceSeconds):
+        self.date = self.date + datetime.timedelta(seconds=sourceSeconds)
+        return self.date
+
+    def subDelta(self, sourceSeconds):
         self.date = self.date - datetime.timedelta(seconds=sourceSeconds)
         return self.date
 
