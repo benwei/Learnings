@@ -4,6 +4,7 @@ from django import forms
 from django.core.context_processors import csrf
 from demo.models import notes
 import datetime
+from django.utils.translation import gettext_lazy as _
 
 class MyForm(forms.Form):
     creator_id = forms.IntegerField();
@@ -36,7 +37,9 @@ def new(request):
 
     userDict = {'1': 'Bill Gates', '2': 'Steve Jobs'}
     c = {'form_action': '/post/new',\
-         'comments':notes.objects.order_by('-pub_date'), 'userInfo': userDict}
+         'comments':notes.objects.order_by('-pub_date'),
+         'userInfo': userDict,
+         'message': _("This is a I18N test.")}
     c.update(csrf(request))
     t = loader.get_template('index.html')
     ctx = Context(c)

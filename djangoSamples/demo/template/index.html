@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 python + django with data model notes {{version}}<br>
-
+{{message}}
 <FORM ACTION="{{form_action}}" METHOD=POST> {% csrf_token %}
 your id:<br>
 <INPUT TYPE="text" NAME="creator_id" MaxLength='3' value='0'><br>
