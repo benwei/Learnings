@@ -17,6 +17,11 @@ class DefaultTestCase(unittest.TestCase):
         msg = get_animal_info1('cat')
         assert msg == sample , 'test cat message'
 
+    def testTestUnknown(self):
+        sample="There is unknown animal."     
+        msg = get_animal_info1('pig')
+        assert msg == sample , 'test pig message'
+
 
 if __name__ == '__main__':
     myTestSuite = unittest.makeSuite(DefaultTestCase,'test')
