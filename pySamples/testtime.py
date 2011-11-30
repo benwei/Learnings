@@ -16,6 +16,7 @@ print t
 print time.strftime("%Y-%m-%d")
 
 import datetime
+print "date: %s" % datetime.date.fromtimestamp(time.time())
 # datetime timedelta
 b = datetime.datetime(2009, 2, 1, 22)
 a = datetime.timedelta(hours=10)
