@@ -17,3 +17,6 @@ test = "test\ntest111\ntest222\n"
 vals = test.split('\n')
 
 print len(vals),vals
+import types
+if isinstance(a, types.ListType):
+    print "type is ListType"
