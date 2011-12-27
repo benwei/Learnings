@@ -20,3 +20,29 @@ print len(vals),vals
 import types
 if isinstance(a, types.ListType):
     print "type is ListType"
+
+testlist = [
+ {'t':'2', 'n':'a'},
+ {'t':'1', 'n':'b'},
+ {'t':'2', 'n':'c'},
+ {'t':'1', 'n':'d'},
+ {'t':'2', 'n':'e'},
+]
+
+b = testlist[1]
+rmlist = []
+index = 0
+for item in testlist:
+    if 't' in item and item['t'] == '1':
+        rmlist.insert(0,index)
+        print 'appendrmlist[%s]: %s' % (index, item)
+    print item
+    index +=1
+
+for item in rmlist:
+    print 'rm: %s from list' % item
+    del testlist[item]
+
+print "testlist count=%s" % len(testlist)
+for item in testlist:
+    print item
