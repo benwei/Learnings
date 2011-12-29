@@ -56,16 +56,21 @@ class Factory:
             print " - Worker[%s]:%s" % (i, a.getLookandfeel())
             i+=1
 
-z = Factory.singleton()
-z2 = Factory.singleton()
-if z == z2:
-    print "* Singleton pattern of Factory"
+def main():
+    f = Factory.singleton()
+    f2 = Factory.singleton()
+    if f == f2:
+        print "* Singleton pattern of Factory"
 
-print "* Factory pattern to employ"
-z.employ(Factory.type_designer)
-z.employ(Factory.type_designer, 'Bill')
-z.employ(Factory.type_engineer, 'Sue')
+    print "* Factory pattern to employ"
+    f.employ(Factory.type_designer)
+    f.employ(Factory.type_designer, 'Bill')
+    f.employ(Factory.type_engineer, 'Sue')
 
-print "* Factory pattern to browse"
-z.browse()
+    print "* Factory pattern to browse"
+    f.browse()
 
+    print "* The factory has %s workers." % f.workerCount()
+
+if __name__ == "__main__":
+    main()

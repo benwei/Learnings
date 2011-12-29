@@ -40,10 +40,11 @@ class Factory:
         for a in self.workers:
             a.lookandfeel()
 
-z = Factory()
-z.employ(Factory.type_designer)
-z.employ(Factory.type_designer, 'bill')
-z.employ(Factory.type_engineer, 'sue')
+f = Factory()
+f.employ(Factory.type_designer)
+f.employ(Factory.type_designer, 'bill')
+f.employ(Factory.type_engineer, 'sue')
+print "The factory has %s workers." % f.workerCount()
 
-z.browse()
+f.browse()
 
