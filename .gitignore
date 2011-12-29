@@ -5,3 +5,4 @@
 *.pyc
 demo.db
 _temp.*
+*.mo
