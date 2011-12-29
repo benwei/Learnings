@@ -6,5 +6,5 @@
 demo.db
 _temp.*
 *.mo
-djangoSamples/demo/build
+build
 *.exe

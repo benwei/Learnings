@@ -25,7 +25,7 @@ define dump-vars
 	@echo "$(files) -> $(exes)";
 endef
 
-tempfile=hello-temp.c
+tempfile=build/hello-temp.c
 
 all:
 # check variable state 
@@ -38,6 +38,7 @@ endif
 	@echo "call define(testvargs)"
 	# call for arguments
 	@$(call testvargs,1,2,3,4)
+	@mkdir -p build 
 	@if [ ! -f "$(tempfile)" ] ; then \
 	   cp hello.c $(tempfile); \
 	   echo "cp hello.c $(tempfile)" ; \
@@ -68,11 +69,13 @@ mk-build:
            index=`expr $$index + 1` ; \
 	done
 
-hello.exe:hello.o
+hello.exe: hello.o
 	$(call build-exe,$@,$<)
 
-hello-temp.exe: hello-temp.o
+build/hello-temp.exe: build/hello-temp.o
 	$(call build-exe,$@,$<)
+
+build/hello.o:hello.c
 
 run:
 	$(build-vars)	
@@ -85,3 +88,4 @@ run:
 clean:
 	$(build-vars)
 	rm -f *.o $(exes) $(tempfile)
+	rm -rf build
