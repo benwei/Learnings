@@ -2,8 +2,11 @@
 import datetime
 FMT8601String = "%Y-%m-%dT%H:%M:%SZ"
 class Date8601:
-    def __init__(self, strDatetime):
-        self.date = self.fromString(strDatetime)
+    def __init__(self, objDatetime):
+        if isinstance(objDatetime, str):
+            self.date = self.fromString(objDatetime)
+        else:
+            self.date = objDatetime
 
     def fromString(self, strDatetime):
         return datetime.datetime.strptime( strDatetime, FMT8601String)
