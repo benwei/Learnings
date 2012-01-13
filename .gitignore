@@ -5,3 +5,6 @@
 *.pyc
 demo.db
 _temp.*
+*.mo
+build
+*.exe

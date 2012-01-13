@@ -1,7 +1,7 @@
 #include<stdio.h>
 
-int * immortal(void){	
-	static int storage = 42;	
+int * immortal(void){
+	static int storage = 42;
 	return &storage;
 }
 
