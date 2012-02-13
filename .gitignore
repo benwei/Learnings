@@ -8,4 +8,4 @@ _temp.*
 *.mo
 build
 *.exe
-.sass_cache
+.sass-cache
