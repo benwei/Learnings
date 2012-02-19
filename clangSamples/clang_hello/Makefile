@@ -30,4 +30,5 @@ $(TARGET).s : $(TARGET).bc
 journey: $(TARGET).s $(TARGET).dis
 
 clean:
-	rm -f *.o *.s *.dis *.bc $(TARGET)
+	#rm -f *.o *.s *.dis *.bc $(TARGET)
+	rm -f *.o  $(TARGET)
