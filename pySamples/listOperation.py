@@ -46,3 +46,12 @@ for item in rmlist:
 print "testlist count=%s" % len(testlist)
 for item in testlist:
     print item
+
+# check string in stringlist
+
+name_list = ['a', 'bb', 'cc']
+for i in ['a', 'cc']:
+    if i in name_list:
+        print '%s found' % i
+
+
