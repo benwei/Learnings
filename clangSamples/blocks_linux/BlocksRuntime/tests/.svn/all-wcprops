@@ -1,0 +1,329 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests
+END
+copy-block-literal-rdar6439600.c
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/copy-block-literal-rdar6439600.c
+END
+dispatch_call_Block_with_release.c
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/dispatch_call_Block_with_release.c
+END
+recursive-block.c
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/recursive-block.c
+END
+modglobal.c
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/modglobal.c
+END
+macro.c
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/macro.c
+END
+byrefcopy.c
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/byrefcopy.c
+END
+josh.C
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/josh.C
+END
+rettypepromotion.c
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/rettypepromotion.c
+END
+c99.c
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/c99.c
+END
+fail.c
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/fail.c
+END
+returnfunctionptr.c
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/returnfunctionptr.c
+END
+varargs-bad-assign.c
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/varargs-bad-assign.c
+END
+large-struct.c
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/large-struct.c
+END
+byrefstruct.c
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/byrefstruct.c
+END
+structmember.c
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/structmember.c
+END
+nestedimport.c
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/nestedimport.c
+END
+testfilerunner.h
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/testfilerunner.h
+END
+variadic.c
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/variadic.c
+END
+testfilerunner.m
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/testfilerunner.m
+END
+objectRRGC.c
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/objectRRGC.c
+END
+recursive-test.c
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/recursive-test.c
+END
+byrefcopystack.c
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/byrefcopystack.c
+END
+constassign.c
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/constassign.c
+END
+voidarg.c
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/voidarg.c
+END
+byrefcopycopy.c
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/byrefcopycopy.c
+END
+byrefcopyinner.c
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/byrefcopyinner.c
+END
+reference.C
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/reference.C
+END
+byrefsanity.c
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/byrefsanity.c
+END
+sizeof.c
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/sizeof.c
+END
+copynull.c
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/copynull.c
+END
+varargs.c
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/varargs.c
+END
+localisglobal.c
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/localisglobal.c
+END
+rdar6414583.c
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/rdar6414583.c
+END
+goto.c
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/goto.c
+END
+hasdescriptor.c
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/hasdescriptor.c
+END
+shorthandexpression.c
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/shorthandexpression.c
+END
+objectassign.c
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/objectassign.c
+END
+recursiveassign.c
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/recursiveassign.c
+END
+byrefcopyint.c
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/byrefcopyint.c
+END
+rdar6396238.c
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/rdar6396238.c
+END
+block-static.c
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/block-static.c
+END
+globalexpression.c
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/globalexpression.c
+END
+copyconstructor.C
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/copyconstructor.C
+END
+nullblockisa.c
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/nullblockisa.c
+END
+blockimport.c
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/blockimport.c
+END
+orbars.c
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/orbars.c
+END
+k-and-r.c
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/k-and-r.c
+END
+flagsisa.c
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/flagsisa.c
+END
+byrefaccess.c
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/byrefaccess.c
+END
+cast.c
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/cast.c
+END
+small-struct.c
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/small-struct.c
+END
+makefile
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/makefile
+END
+dispatch_async.c
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/dispatch_async.c
+END
+rdar6405500.c
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/llvm-project/!svn/ver/110278/compiler-rt/trunk/BlocksRuntime/tests/rdar6405500.c
+END
