@@ -6,7 +6,7 @@ class MetaClass(type):
         print '%s.__new__(%s)' % (bases, classname)
         return type.__new__(meta, classname, bases, classDict)
 
-    def __call__(meta, value):
+    def __call__(meta):
         print "%s.__call__(%s) % (meta, value)"
         return type.__call__(meta, value)
 
