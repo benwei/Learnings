@@ -1,0 +1,17 @@
+$bg-color: #F3F2EE;
+$text-color: #616161;
+$note-color: #CD9982;
+$link-color: #BC522B;
+
+$base-font-size: 15px;
+$base-line-height:18px;
+
+$relative-font-sizing: false;
+
+@import "compass";
+@import "compass/reset";
+
+@import "lib/lib";
+$a: 1;
+/* @import "site"; */
+

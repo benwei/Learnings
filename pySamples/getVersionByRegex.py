@@ -1,5 +1,5 @@
 import re
-from sys import argv
+from sys import argv, exit
 L = ["aaaa.aaaA", "1.0", "1.0.1004aaa", "b0.70.1040", "0a.0b.0c"]
 
 X = "(\d+\.\d+\.\d+)"
@@ -19,8 +19,8 @@ def re2():
             print s[a.start():a.end()]
 
 if len(argv) < 3:
-   syntax("syntax: <re1|re2> <loopmax>")
-   ext(1)
+   print("syntax: <re1|re2> <loopmax>")
+   exit(1)
 
 loopMax = int(argv[2])
 action= 1
