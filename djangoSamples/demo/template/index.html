@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+{% load i18n %}
+{% trans "python + django with data model notes" %} {{version}}<br>
+{{message}}
+<FORM ACTION="{{form_action}}" METHOD=POST> {% csrf_token %}
+{% trans "your id:"%}<br>
+<INPUT TYPE="text" NAME="creator_id" MaxLength='3' value='0'><br>
+{% trans "your comments:" %}<BR>
+<TEXTAREA NAME="comments" COLS=36 ROWS=4></TEXTAREA>
+<P><INPUT TYPE=SUBMIT VALUE="{% trans "submit"%} ">
+</FORM>
+<br>
+
+<B>Notes:</B>
+{% load post_extra %}
+{% for o in comments %}
+<hr><table border=0><tr>
+<td><b>{{o.creator_id|getName:userInfo}}</b>:</td>
+<td>{{o.comments}} </td></tr></table>
+</tr><tr><td>{{o.pub_date|date:"N j,Y H:iA"}}</td>
+{% endfor %}
+{% endblock %}

@@ -8,7 +8,7 @@ class conflib(confbase):
         pass
 
     def show(self):
-        print self.getName()
+        print "%s is %syo." % (self.getName(), self.age)
 
     def sayHello(self):
         print "Hello, %s!" % (self.getName())

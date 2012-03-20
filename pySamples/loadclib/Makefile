@@ -1,16 +1,5 @@
 # this sample is tested on cygwin + windows xp
-KNAMEFULL  = $(shell uname -s | sed 's/_.*//g')
-# cygwin on windows xp
-# CYGWIN_NT-5.1
-KNAME = $(KNAMEFULL)
-ifeq ($(KNAME),CYGWIN)
-EXEEXT = .exe
-DLLEXT = .dll
-else
-# testing on ubuntu
-EXEEXT =
-DLLEXT = .so
-endif
+include ../../mk.defines
 CFLAGS = -Wall
 CFILES = main.c
 OBJS= $(CFILES:.c=.o)

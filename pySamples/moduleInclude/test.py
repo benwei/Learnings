@@ -3,7 +3,7 @@
 import conflib
 
 def main():
-    c = conflib.conflib("test", 1)
+    c = conflib.conflib("yammer", 1)
     c.show()
 
 if __name__ == '__main__':
