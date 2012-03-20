@@ -7,6 +7,7 @@ def testFunc(a, b):
 
 def testHello(b):
     print b
+    print inspect.stack()
 
 def main():
     cblist = [testFunc, testHello]
@@ -15,6 +16,8 @@ def main():
         cbspec = inspect.getargspec(cb)
         print cbspec
         print "%s(%s)" % (cb.__name__, cbspec.args)
+        if len(cbspec.args) == 1:
+            cb('1')
 
 if __name__ == '__main__':
     main()
