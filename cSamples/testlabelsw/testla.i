@@ -1,11 +1,9 @@
 # 1 "testla.c"
-# 1 "testla.c" 1
-# 1 "<built-in>" 1
-# 1 "<built-in>" 3
-# 143 "<built-in>" 3
-# 1 "<command line>" 1
-# 1 "<built-in>" 2
-# 1 "testla.c" 2
+# 1 "/Users/ben_wei/src/github/Learnings/cSamples/testlabelsw//"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "testla.c"
+# 1 "testla.h" 1
 # 1 "/usr/include/stdio.h" 1 3 4
 # 64 "/usr/include/stdio.h" 3 4
 # 1 "/usr/include/sys/cdefs.h" 1 3 4
@@ -227,54 +225,61 @@ typedef struct __sFILE {
 extern FILE *__stdinp;
 extern FILE *__stdoutp;
 extern FILE *__stderrp;
-# 239 "/usr/include/stdio.h" 3 4
+
+# 238 "/usr/include/stdio.h" 3 4
+
 void clearerr(FILE *);
 int fclose(FILE *);
 int feof(FILE *);
 int ferror(FILE *);
 int fflush(FILE *);
 int fgetc(FILE *);
-int fgetpos(FILE * restrict, fpos_t *);
-char *fgets(char * restrict, int, FILE *);
+int fgetpos(FILE * , fpos_t *);
+char *fgets(char * , int, FILE *);
 
 
 
-FILE *fopen(const char * restrict, const char * restrict) __asm("_" "fopen" );
+FILE *fopen(const char * , const char * ) __asm("_" "fopen" );
 
-int fprintf(FILE * restrict, const char * restrict, ...) __attribute__((__format__ (__printf__, 2, 3)));
+int fprintf(FILE * , const char * , ...) __attribute__((__format__ (__printf__, 2, 3)));
 int fputc(int, FILE *);
-int fputs(const char * restrict, FILE * restrict) __asm("_" "fputs" );
-size_t fread(void * restrict, size_t, size_t, FILE * restrict);
-FILE *freopen(const char * restrict, const char * restrict,
-                 FILE * restrict) __asm("_" "freopen" );
-int fscanf(FILE * restrict, const char * restrict, ...) __attribute__((__format__ (__scanf__, 2, 3)));
+int fputs(const char * , FILE * ) __asm("_" "fputs" );
+size_t fread(void * , size_t, size_t, FILE * );
+FILE *freopen(const char * , const char * ,
+                 FILE * ) __asm("_" "freopen" );
+int fscanf(FILE * , const char * , ...) __attribute__((__format__ (__scanf__, 2, 3)));
 int fseek(FILE *, long, int);
 int fsetpos(FILE *, const fpos_t *);
 long ftell(FILE *);
-size_t fwrite(const void * restrict, size_t, size_t, FILE * restrict) __asm("_" "fwrite" );
+size_t fwrite(const void * , size_t, size_t, FILE * ) __asm("_" "fwrite" );
 int getc(FILE *);
 int getchar(void);
 char *gets(char *);
 void perror(const char *);
-int printf(const char * restrict, ...) __attribute__((__format__ (__printf__, 1, 2)));
+int printf(const char * , ...) __attribute__((__format__ (__printf__, 1, 2)));
 int putc(int, FILE *);
 int putchar(int);
 int puts(const char *);
 int remove(const char *);
 int rename (const char *, const char *);
 void rewind(FILE *);
-int scanf(const char * restrict, ...) __attribute__((__format__ (__scanf__, 1, 2)));
-void setbuf(FILE * restrict, char * restrict);
-int setvbuf(FILE * restrict, char * restrict, int, size_t);
-int sprintf(char * restrict, const char * restrict, ...) __attribute__((__format__ (__printf__, 2, 3)));
-int sscanf(const char * restrict, const char * restrict, ...) __attribute__((__format__ (__scanf__, 2, 3)));
+int scanf(const char * , ...) __attribute__((__format__ (__scanf__, 1, 2)));
+void setbuf(FILE * , char * );
+int setvbuf(FILE * , char * , int, size_t);
+int sprintf(char * , const char * , ...) __attribute__((__format__ (__printf__, 2, 3)));
+int sscanf(const char * , const char * , ...) __attribute__((__format__ (__scanf__, 2, 3)));
 FILE *tmpfile(void);
 char *tmpnam(char *);
 int ungetc(int, FILE *);
-int vfprintf(FILE * restrict, const char * restrict, va_list) __attribute__((__format__ (__printf__, 2, 0)));
-int vprintf(const char * restrict, va_list) __attribute__((__format__ (__printf__, 1, 0)));
-int vsprintf(char * restrict, const char * restrict, va_list) __attribute__((__format__ (__printf__, 2, 0)));
-# 300 "/usr/include/stdio.h" 3 4
+int vfprintf(FILE * , const char * , va_list) __attribute__((__format__ (__printf__, 2, 0)));
+int vprintf(const char * , va_list) __attribute__((__format__ (__printf__, 1, 0)));
+int vsprintf(char * , const char * , va_list) __attribute__((__format__ (__printf__, 2, 0)));
+
+# 296 "/usr/include/stdio.h" 3 4
+
+
+
+
 char *ctermid(char *);
 
 
@@ -284,24 +289,37 @@ char *ctermid(char *);
 FILE *fdopen(int, const char *) __asm("_" "fdopen" );
 
 int fileno(FILE *);
-# 319 "/usr/include/stdio.h" 3 4
+
+# 318 "/usr/include/stdio.h" 3 4
+
 int pclose(FILE *);
 
 
 
 FILE *popen(const char *, const char *) __asm("_" "popen" );
-# 341 "/usr/include/stdio.h" 3 4
+
+
+# 340 "/usr/include/stdio.h" 3 4
+
 int __srget(FILE *);
 int __svfscanf(FILE *, const char *, va_list) __attribute__((__format__ (__scanf__, 2, 0)));
 int __swbuf(int, FILE *);
-# 352 "/usr/include/stdio.h" 3 4
+
+
+
+
+
+
+
+
 static __inline int __sputc(int _c, FILE *_p) {
  if (--_p->_w >= 0 || (_p->_w >= _p->_lbfsize && (char)_c != '\n'))
   return (*_p->_p++ = _c);
  else
   return (__swbuf(_c, _p));
 }
-# 378 "/usr/include/stdio.h" 3 4
+# 377 "/usr/include/stdio.h" 3 4
+
 void flockfile(FILE *);
 int ftrylockfile(FILE *);
 void funlockfile(FILE *);
@@ -317,6 +335,7 @@ int putw(int, FILE *);
 
 
 char *tempnam(const char *, const char *) __asm("_" "tempnam" );
+
 # 414 "/usr/include/stdio.h" 3 4
 typedef __darwin_off_t off_t;
 
@@ -329,21 +348,30 @@ off_t ftello(FILE *);
 
 
 
-int snprintf(char * restrict, size_t, const char * restrict, ...) __attribute__((__format__ (__printf__, 3, 4)));
-int vfscanf(FILE * restrict, const char * restrict, va_list) __attribute__((__format__ (__scanf__, 2, 0)));
-int vscanf(const char * restrict, va_list) __attribute__((__format__ (__scanf__, 1, 0)));
-int vsnprintf(char * restrict, size_t, const char * restrict, va_list) __attribute__((__format__ (__printf__, 3, 0)));
-int vsscanf(const char * restrict, const char * restrict, va_list) __attribute__((__format__ (__scanf__, 2, 0)));
+int snprintf(char * , size_t, const char * , ...) __attribute__((__format__ (__printf__, 3, 4)));
+int vfscanf(FILE * , const char * , va_list) __attribute__((__format__ (__scanf__, 2, 0)));
+int vscanf(const char * , va_list) __attribute__((__format__ (__scanf__, 1, 0)));
+int vsnprintf(char * , size_t, const char * , va_list) __attribute__((__format__ (__printf__, 3, 0)));
+int vsscanf(const char * , const char * , va_list) __attribute__((__format__ (__scanf__, 2, 0)));
+
 # 442 "/usr/include/stdio.h" 3 4
 typedef __darwin_ssize_t ssize_t;
 
 
 
-int dprintf(int, const char * restrict, ...) __attribute__((__format__ (__printf__, 2, 3))) __attribute__((visibility("default")));
-int vdprintf(int, const char * restrict, va_list) __attribute__((__format__ (__printf__, 2, 0))) __attribute__((visibility("default")));
-ssize_t getdelim(char ** restrict, size_t * restrict, int, FILE * restrict) __attribute__((visibility("default")));
-ssize_t getline(char ** restrict, size_t * restrict, FILE * restrict) __attribute__((visibility("default")));
-# 459 "/usr/include/stdio.h" 3 4
+int dprintf(int, const char * , ...) __attribute__((__format__ (__printf__, 2, 3))) __attribute__((visibility("default")));
+int vdprintf(int, const char * , va_list) __attribute__((__format__ (__printf__, 2, 0))) __attribute__((visibility("default")));
+ssize_t getdelim(char ** , size_t * , int, FILE * ) __attribute__((visibility("default")));
+ssize_t getline(char ** , size_t * , FILE * ) __attribute__((visibility("default")));
+
+
+
+
+
+
+
+
+
 extern const int sys_nerr;
 extern const char *const sys_errlist[];
 
@@ -366,39 +394,45 @@ FILE *funopen(const void *,
                  int (*)(void *, const char *, int),
                  fpos_t (*)(void *, fpos_t, int),
                  int (*)(void *));
+
 # 499 "/usr/include/stdio.h" 3 4
 # 1 "/usr/include/secure/_stdio.h" 1 3 4
 # 31 "/usr/include/secure/_stdio.h" 3 4
 # 1 "/usr/include/secure/_common.h" 1 3 4
 # 32 "/usr/include/secure/_stdio.h" 2 3 4
 # 45 "/usr/include/secure/_stdio.h" 3 4
-extern int __sprintf_chk (char * restrict, int, size_t,
-     const char * restrict, ...)
-                                      ;
+extern int __sprintf_chk (char * , int, size_t,
+     const char * , ...)
+  ;
 
 
 
 
-extern int __snprintf_chk (char * restrict, size_t, int, size_t,
-      const char * restrict, ...)
-                                       ;
+extern int __snprintf_chk (char * , size_t, int, size_t,
+      const char * , ...)
+  ;
 
 
 
 
 
-extern int __vsprintf_chk (char * restrict, int, size_t,
-      const char * restrict, va_list)
-                                       ;
+extern int __vsprintf_chk (char * , int, size_t,
+      const char * , va_list)
+  ;
 
 
 
 
-extern int __vsnprintf_chk (char * restrict, size_t, int, size_t,
-       const char * restrict, va_list)
-                                        ;
+extern int __vsnprintf_chk (char * , size_t, int, size_t,
+       const char * , va_list)
+  ;
 # 500 "/usr/include/stdio.h" 2 3 4
+# 2 "testla.h" 2
+
+
+int run(const char *s);
 # 2 "testla.c" 2
+
 
 
 
@@ -409,23 +443,21 @@ int run(const char *s)
 {
         const char *head = s;
         void *tdispatch_list[] = {&&la, &&lb, &&lc, &&ld};
+        int a = 1;
 
         la:
-               printf("a:%c\n", *s);
+               ;
+               a++;
                { int n = (*++s) ? (s - head) % (sizeof(tdispatch_list)/sizeof(void *) - 1) : sizeof(tdispatch_list)/sizeof(void *) - 1; goto *tdispatch_list[n]; };
         lb:
-               printf("b:%c\n", *s);
+               ;
+               a++;
                { int n = (*++s) ? (s - head) % (sizeof(tdispatch_list)/sizeof(void *) - 1) : sizeof(tdispatch_list)/sizeof(void *) - 1; goto *tdispatch_list[n]; };
         lc:
-               printf("c:%c\n", *s);
+               a-=2;
+               ;
                { int n = (*++s) ? (s - head) % (sizeof(tdispatch_list)/sizeof(void *) - 1) : sizeof(tdispatch_list)/sizeof(void *) - 1; goto *tdispatch_list[n]; };
 
         ld:
-        return 0;
-}
-
-int main(int argc, char **argv) {
-        const char *s = "hello";
-        run(s);
-        return 0;
+        return a;
 }

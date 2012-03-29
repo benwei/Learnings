@@ -1,11 +1,18 @@
-
+CFLAGS = --save-temps -g -Wa,-a,-ad
 all: run
 
-testla: %: %.c
-	$(CC) -O2 -o $@ $@.c --save-temps
+.c.o:
+	$(CC) -c $< -I. $(CFLAGS)
 
-run: testla
-	./testla
+testla: main.o testla.o
+	$(CC) -O2 -o $@ $^ 
+
+testsw: main.o testsw.o
+	$(CC) -O2 -o $@ $^ 
+
+run: testla testsw
+	time ./testla
+	time ./testsw
 
 clean:
-	rm -f *.o testla
+	rm -f *.o testla testsw
