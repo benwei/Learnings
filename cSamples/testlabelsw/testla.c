@@ -1,10 +1,12 @@
 #include "testla.h"
 
-#define dispatch(s, h)  { int n = (*++s) ? (s - h) % \
+#define dispatch2(s, h)  { int n = (*++s) ? (s - h) % \
                           (sizeof(tdispatch_list)/sizeof(void *) - 1) : \
                           sizeof(tdispatch_list)/sizeof(void *) - 1; \
                           goto *tdispatch_list[n]; }
 
+#define dispatch(s, h)  { int n = (*++s) ? (s - h) % 3 : 3; \
+                          goto *tdispatch_list[n]; }
 
 int run(const char *s)
 {

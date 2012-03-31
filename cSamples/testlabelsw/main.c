@@ -9,13 +9,3 @@ int main(int argc, char **argv) {
         return 0;
 }
 
-/*
-switch(a){
- 0:
-        lll
-        break;
- 1:
-        sss
-        break;
-}
-*/
