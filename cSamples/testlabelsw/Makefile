@@ -1,3 +1,4 @@
+SHELL=bash
 OS=$(shell uname -s)
 
 ifeq ($(CROSS),1)
@@ -12,20 +13,30 @@ ifeq ($(OS),Darwin)
 endif
 endif
 
-CFLAGS += --save-temps -g 
+ifeq ($(DEBUG),1)
+CFLAGS+=-g
+endif
+
+ifeq ($(NO_O2),1)
+CFLAGS += --save-temps 
+else
+CFLAGS += -O2 --save-temps
+endif
+
 all: testla testsw
 
 .c.o:
 	$(CC) -c $< -I. $(CFLAGS) 
 
 testla: main.o testla.o
-	$(CC) -O2 -o $@ $^ 
+	$(CC) -o $@ $^ 
 
 testsw: main.o testsw.o
-	$(CC) -O2 -o $@ $^ 
+	$(CC) -o $@ $^ 
 
 run: testla testsw
 	time ./testla 
+	@echo
 	time ./testsw 
 
 clean:

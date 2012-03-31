@@ -1,4 +1,4 @@
-#include "testla.h"
+#include "testshared.h"
 
 int run(const char *s)
 {

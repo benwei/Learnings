@@ -1,4 +1,4 @@
-#include "testla.h"
+#include "testshared.h"
 
 #define dispatch2(s, h)  { int n = (*++s) ? (s - h) % \
                           (sizeof(tdispatch_list)/sizeof(void *) - 1) : \
