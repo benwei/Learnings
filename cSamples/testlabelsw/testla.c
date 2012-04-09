@@ -1,42 +1,33 @@
-#include "stdio.h"
+#include "testshared.h"
 
-#define dispatch(s, h)  { int n = (*++s) ? (s - h) % \
+#define dispatch2(s, h)  { int n = (*++s) ? (s - h) % \
                           (sizeof(tdispatch_list)/sizeof(void *) - 1) : \
                           sizeof(tdispatch_list)/sizeof(void *) - 1; \
+                          goto *tdispatch_list[n]; }
+
+#define dispatch(s, h)  { int n = (*++s) ? (s - h) % 3 : 3; \
                           goto *tdispatch_list[n]; }
 
 int run(const char *s)
 {
         const char *head = s;
         void *tdispatch_list[] = {&&la, &&lb, &&lc, &&ld};
+        int a = 1;
 
         la:
-               printf("a:%c\n", *s);
+               dmsg("a:%c\n", *s);
+               a++;
                dispatch(s, head);
         lb:
-               printf("b:%c\n", *s);
+               dmsg("b:%c\n", *s);
+               a++;
                dispatch(s, head);
         lc:
-               printf("c:%c\n", *s);
+               a-=2;
+               dmsg("c:%c\n", *s);
                dispatch(s, head);
 
         ld:
-        return 0;
+        return a;
 }
 
-int main(int argc, char **argv) {
-        const char *s = "hello";
-        run(s);
-        return 0;
-}
-
-/*
-switch(a){
- 0:
-        lll
-        break;
- 1:
-        sss
-        break;
-}
-*/
