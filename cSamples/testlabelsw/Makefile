@@ -28,11 +28,24 @@ all: testla testsw
 .c.o:
 	$(CC) -c $< -I. $(CFLAGS) 
 
-testla: main.o testla.o
+testla: %:%.o main.o 
 	$(CC) -o $@ $^ 
 
-testsw: main.o testsw.o
+testsw: %:%.o main.o
 	$(CC) -o $@ $^ 
+
+unit: testla testsw
+	@./testsw -vs ; \
+	ret_sw=$$? ; \
+	./testla -vs ; \
+	ret_la=$$? ; \
+	if [ $$ret_la -eq $$ret_sw ]; then \
+	echo "result equal"; \
+	else \
+	echo "reqult is'nt equal"; \
+	exit 1 ; \
+	fi
+	
 
 run: testla testsw
 	time ./testla 
