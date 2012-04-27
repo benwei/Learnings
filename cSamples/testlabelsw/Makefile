@@ -53,4 +53,4 @@ run: testla testsw
 	time ./testsw 
 
 clean:
-	rm -f *.o testla testsw *.i *.s *.txt
+	rm -f *.o testla testsw *.i *.s 
