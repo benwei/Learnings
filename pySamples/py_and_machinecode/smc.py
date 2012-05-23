@@ -5,7 +5,11 @@ from ctypes import *
 import sys
 from math import log
 
-libc = CDLL('libc.so.6')
+platform=sys.platform
+if sys.platform == "cygwin":
+    libmath = libc = cdll.LoadLibrary("/bin/cygwin1.dll") 
+else:
+    libc = CDLL('libc.so.6')
 mprotect = libc.mprotect
 getpagesize = libc.getpagesize
 
@@ -38,4 +42,4 @@ p = addressof(codes) & ~(getpagesize() - 1)
 mprotect(p, getpagesize(), PROT_READ | PROT_WRITE | PROT_EXEC)
 add_func = CFUNCTYPE(c_int, c_int, c_int)(addressof(codes))
 
-print "add%d(99, 1) = %d" % (arch, add_func(99, 1))
+print "%s_add%d(99, 1) = %d" % (platform, arch, add_func(99, 1))
