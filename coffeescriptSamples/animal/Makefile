@@ -1,17 +1,30 @@
+mtarget=sample.js
+msrc:=$(mtarget:.js=.coffee)
 
-SRCFILE=animal.coffee
-OUTBIN=animal.js
+SRCFILE=$(wildcard *.coffee)
+OUTBINS=$(SRCFILE:.coffee=.js)
 
-all: $(OUTBIN)
+all: build
 
-animal.js: $(SRCFILE)
-	coffee -c $^
+$(mtarget):$(msrc)
+	@echo "building $^ -> $(mtarget)"
+	coffee -c $(msrc)
+
+post-build: $(mtarget)
+
+build:
+	@for i in $(OUTBINS) ; do \
+	make post-build mtarget="$$i" ; \
+	done
 
 debug: $(SRCFILE) 
 	coffee $^
 
-run: $(OUTBIN)
-	node $^
+run: $(OUTBINS)
+	@for i in $^ ; do \
+	echo "====> run [$$i] <====" ; \
+	node "$$i" ; \
+	done
 
 clean:
-	rm -f animal.js
+	rm -f *.js
