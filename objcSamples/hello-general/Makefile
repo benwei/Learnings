@@ -24,7 +24,7 @@ ifeq ($(CURR_OS),Mac OS X)
 endif
 
 .m.o:
-	$(CC) $(OBJCFLAGS) -c $< $(LDFLAGS)
+	$(CC) $(OBJCFLAGS) -c $<
 
 hello: $(OBJS)
 	$(CC) -o $@ $^ $(LDFLAGS)
