@@ -9,7 +9,7 @@ def counter():
       # nonlocal only work for python3
       #nonlocal x
       d['x'] += y
-      print d['x']
+      return d['x'];
     return increment
       
 counter1_increment = counter()  # counter() returns a closure containing a
@@ -18,7 +18,7 @@ counter1_increment = counter()  # counter() returns a closure containing a
 counter2_increment = counter()  # a second closure, containing a second 
     # instance of the variable x
             
-counter1_increment(1)    # prints 1
-counter1_increment(7)    # prints 8
-counter2_increment(1)    # prints 1
-counter1_increment(1)    # prints 9
+print counter1_increment(1)    # prints 1
+print counter1_increment(7)    # prints 8
+print counter2_increment(1)    # prints 1
+print counter1_increment(1)    # prints 9
