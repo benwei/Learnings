@@ -1,0 +1,4 @@
+vim
+ + pathogen
+ + vim-fugitive
+ + vimwiki
