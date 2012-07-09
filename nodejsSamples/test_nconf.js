@@ -50,6 +50,13 @@ function main() {
 	console.log("clear('a:c')");
 	sa.clear("a:c");
 	console.log("sa.get('a') = " + util.inspect(sa.get("a")));
+
+	sa.set("a:array", [
+	 { name: 'elm1', value: 'v1'}, 
+	 { name: 'elm2', value: 'v2'} 
+	]);
+	var arr = sa.get("a:array");
+	arr[arr.length] = {name: "elm3", value: 'v3'}
 	sa.save();
 	sa.dump();
 }
