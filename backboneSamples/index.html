@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Notebook</title>
+<link rel="stylesheet" href="note.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://underscorejs.org/underscore-min.js"></script>
+<script type="text/javascript" src="/backbone.js"></script>
+<script type="text/template" id="input-view-template">
+<ul>
+<div class="colbox">
+<div id="lblname">Name:</div>
+  <input id='name' type='text' value='aaa' width=20><br>
+<div id="lbldesc">Comment:</div>
+<input id='desc' type='text' value='just aaa' width=30><br>
+<button id='add'>Submit</button>
+</ul>
+</script>
+
+<script type="text/template" id="item-view-template">
+<div class="colbox">
+<span class="col1"><%=nick%></span>
+<span class="col2"><%=desc%></span>
+<span class="swap">[swap]</span>
+<span class="delete">[delete]</span>
+</div>
+</script>
+
+</head>
+<body>
+<script type="text/javascript" src="note.js"></script>
+</body>
+</html>

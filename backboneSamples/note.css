@@ -1,0 +1,31 @@
+.swap {
+font-family:sans-serif;
+color:blue;
+cursor:pointer;
+}
+
+.delete{
+font-family:sans-serif;
+color:red;
+cursor:pointer;
+}
+
+li  {
+display: block;
+}
+
+.colbox {
+padding: 5px;
+color:black;
+border-color: #FCC;
+background-color: #FFE5E5;
+border: 1px solid;
+}
+
+.col1 {
+color:black;
+}
+
+.col2 {
+color:gray;
+}
