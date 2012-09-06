@@ -1,0 +1,19 @@
+{
+  "author": "ben6",
+  "name": "rjs",
+  "description": "demo requirejs with nodejs",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "noe"
+  },
+  "main": "./main.js",
+  "dependencies": {
+    "requirejs": "2.0.6"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
