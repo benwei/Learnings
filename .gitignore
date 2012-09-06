@@ -9,3 +9,4 @@ _temp.*
 build
 *.exe
 .sass-cache
+node_modules

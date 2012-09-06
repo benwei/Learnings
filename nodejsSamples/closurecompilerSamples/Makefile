@@ -1,6 +1,6 @@
 #!/bin/sh
 
-jarcc_dir=closure-compiler
+jarcc_dir=$(HOME)/.clc/closure-compiler
 jarcc=$(jarcc_dir)/compiler.jar
 clc=java -jar $(jarcc)
 
@@ -43,11 +43,9 @@ $(JSMOD): $(OJSFILES)
 		ln -sf $(SJSMOD) $@ ; \
 	fi
 
-run: $(JSMOD)
-	@node $<
+run: prebuild $(JSMOD)
+	@node $(JSMOD)
 
 clean:
-	@rm -f $(JSMOD) $(OJSFILES) 
-
-dist-clean:
-	@rm -rf build
+	@rm -f $(JSMOD) $(OJSFILES)  ; \
+	rm -rf build
