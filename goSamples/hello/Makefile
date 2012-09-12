@@ -1,16 +1,22 @@
-GOCC=6g
-GOLD=6l
+# go version go1.0.2
+# test go in OSX Lion 10.7.4
 
-all: hello
+GO=go
 
-hello.6: hello.go
-	$(GOCC) $(CFLAGS) $^
+SAMPLES=$(wildcard *.go)
+TARGETS=$(patsubst %.go,%,$(SAMPLES))
 
-hello: hello.6
-	$(GOLD) -o $@ $^ 
+
+all: buildall
+	
+buildall: $(TARGETS)
+
+%: %.go
+	@echo build [$<]; \
+	go build $<
 
 run: hello
 	./$^
 
 clean:
-	rm -f hello.6 hello
+	@rm -f $(TARGETS)
