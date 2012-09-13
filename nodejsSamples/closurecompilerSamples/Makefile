@@ -18,7 +18,7 @@ PREFIX=build
 SJSFILES=$(addprefix src/, $(JSFILES))
 OJSFILES=$(addprefix $(PREFIX)/, $(JSFILES))
 
-SJSMOD=../src/main.js
+SJSMOD=./src/main.js
 JSMOD=$(PREFIX)/main.js
 
 all: prebuild setup $(JSMOD)
@@ -39,9 +39,7 @@ $(PREFIX)/%.js : src/%.js
 	
 
 $(JSMOD): $(OJSFILES)
-	@if [ ! -h "$@" ] ; then \
-		ln -sf $(SJSMOD) $@ ; \
-	fi
+	ln -f $(SJSMOD) $@ 
 
 run: prebuild $(JSMOD)
 	@node $(JSMOD)
