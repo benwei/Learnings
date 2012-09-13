@@ -21,7 +21,7 @@ $(out_dir):
 $(deps_dir):
 	mkdir -p $@
 
-$(deps_dir)/app.d: $(deps_dir)
+$(deps_dir)/app.d: $(deps_dir) $(out_dir)
 	touch $@
 	# symbolic link can't use as a dependency rule, used .d file instead.
 	ln -f src/app.js $(out_dir)/ 
