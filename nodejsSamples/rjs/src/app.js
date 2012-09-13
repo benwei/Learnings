@@ -6,5 +6,5 @@ nodeRequire: require
 
 requirejs(['entry'],
 function(entry) {
-        entry.run();
+        entry();
 });

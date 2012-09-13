@@ -1,7 +1,8 @@
 ({
 baseUrl: "./src",
 name: "entry",
-out: "entry.js",
+exclude: ["require"],
+out: "out/entry.js",
 paths: {
 }
 })

@@ -1,10 +1,5 @@
-
-define(["mod"],
-    function(mod){
-        return { 
-            run: function () {
-                mod.exec();
-            }
-        }
-    }
-);
+define(["mod"], function(mod){
+    return function () {
+        mod.exec();
+    };
+});

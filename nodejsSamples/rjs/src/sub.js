@@ -1,8 +1,7 @@
-define([], function(require) {
-    var util = require('util');
+define(function(require) {
     var info = {
         a: 1,
         b: {c : 2}
     }
-    return "sub module loaded info:" + util.inspect(info);
+    return "sub module loaded info:" + JSON.stringify(info);
 });
