@@ -5,7 +5,7 @@ deps_js=app.js
 deps_d=$(patsubst %.js,$(deps_dir)/%.d,$(deps_js))
 targetjs=$(out_dir)/entry.js
 
-all: run
+all: $(targetjs)
 
 $(targetjs): $(deps) $(deps_d)
 	#node node_modules/.bin/r.js -o name=entry $(out_dir)=$@ baseUrl=src
