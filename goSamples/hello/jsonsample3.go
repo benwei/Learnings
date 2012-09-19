@@ -16,7 +16,7 @@ type Message2 struct {
     Name string
     Body string
     Time int64
-    Data map[string]string `json:"data"`
+    Data map[string]interface{} `json:"data"`
 }
 
 func main() {
@@ -24,9 +24,9 @@ func main() {
     m.Name = "Alice"
     m.Body = "Hello"
     m.Time = 1294706395881547000
-    b := []byte(`{"body": "testdata"}`);
-    var data map[string]string
-    err := json.Unmarshal(b, &data) 
+    b := []byte(`{"body": "testdata", "values": [ "a", "b" ] }`);
+    var data map[string]interface{};
+    err := json.Unmarshal(b, &data)
 
     m.Data = data
 
