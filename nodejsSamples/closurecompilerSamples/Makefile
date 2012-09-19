@@ -39,11 +39,14 @@ $(PREFIX)/%.js : src/%.js
 	
 
 $(JSMOD): $(OJSFILES)
-	ln -f $(SJSMOD) $@ 
+	@if [ ! -f "$(JSMOD).d" ]; then \
+		ln -f $(SJSMOD) $(JSMOD) ; \
+		touch $(JSMOD).d ; \
+	fi
 
 run: prebuild $(JSMOD)
 	@node $(JSMOD)
 
 clean:
-	@rm -f $(JSMOD) $(OJSFILES)  ; \
-	rm -rf build
+	@rm -f $(JSMOD).d $(OJSFILES)  ; \
+	rm -rf build 
