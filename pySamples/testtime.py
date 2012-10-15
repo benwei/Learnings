@@ -41,3 +41,10 @@ a = datetime.timedelta(hours=10)
 print b - a
 c = datetime.timedelta(seconds=10)
 print b - c
+
+
+def show():
+    until = datetime.datetime.now() - datetime.timedelta(1)
+    print until
+
+show()
