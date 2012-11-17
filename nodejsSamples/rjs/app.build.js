@@ -1,7 +1,5 @@
 ({
-baseUrl: "./src",
-name: "entry",
-out: "entry.js",
-paths: {
-}
+    baseUrl: "./src",
+    name: "entry",
+    out: "out/entry.js",
 })

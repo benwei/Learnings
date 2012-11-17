@@ -5,17 +5,20 @@ GO=go
 
 SAMPLES=$(wildcard *.go)
 TARGETS=$(patsubst %.go,%,$(SAMPLES))
-
+TARGET=zooshow
 
 all: buildall
 	
-buildall: $(TARGETS)
+buildall: zooshow
 
-%: %.go
-	@echo build [$<]; \
-	go build $<
+zooshow: $(SAMPLES)
+	@echo build [$^]; \
+	go build $^
 
-run: hello
+run: 
+	go run *.go
+
+runbin: main
 	./$^
 
 clean:
