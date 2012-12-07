@@ -5,3 +5,5 @@ var c = parseInt(d * 100) / 100;
 console.log("(parseInt(" + a + " + " + b + ") * 100) / 100 = " + c); 
 console.log("(Math.round(" + a + " + " + b + ") * 100) / 100 = " + Math.round(d * 100)/100); 
 console.log("(" + a + " + " + b + ").toFixed(2) = " + d.toFixed(2)); 
+
+console.log("Math.round(" + b + "/" + a + ") = " + Math.round(b/a)); 
