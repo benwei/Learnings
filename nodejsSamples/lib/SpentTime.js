@@ -1,4 +1,4 @@
-// from https://gist.github.com/4232236
+// my lib and publish at https://gist.github.com/4232236
 function SpentTime () {                                                                                                                                              
     this.reset = function () {
         start = new Date(); 
