@@ -1,7 +1,5 @@
-
-
-module.exports = () ->
+module.exports = (ma, mb) ->
   that = {}
   that.sum = (a, b) ->
-    return a + b
+    return ma + mb + a + b
   return that
