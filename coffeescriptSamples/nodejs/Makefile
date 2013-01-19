@@ -1,4 +1,4 @@
-APP=output/test.js
+APP=output/app.js
 
 all: help
 
