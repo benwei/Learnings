@@ -1,8 +1,8 @@
 util = require('util')
 foo = require('./foo')
+myextend = require('./myextend')
 
 sum = 0
-
 
 test = (a, b) ->
   return a+b
@@ -20,39 +20,4 @@ console.log 'num list [0...9] ==> ' + numList0to8
 nameList = ['sue', 'john', 'amy']
 console.log 'name list ==>' + nameList
 
-# extend class
-
-class human
-  constructor: (name) ->
-    @name = name
-  setName: (name) ->
-    @name = name
-
-  getName: () ->
-    @name
-
-class techer extends human
-  constructor: (name) ->
-    super(name)
-    @job = 'techer'
-    @students = []
-
-  addStudent: (name) ->
-    @students.push(name)
-
-  hasStudents: ->
-    @students
-
-  listStudents: ->
-    console.log "#{@name} is a #{@job}. #{@name} teches #{@students}."
-
-sue = new human('Sue')
-
-console.log sue.getName()
-
-john = new techer('John')
-john.addStudent('Ming')
-john.addStudent('Bob')
-
-john.listStudents()
-
+myextend()
