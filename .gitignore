@@ -11,3 +11,4 @@ build
 .sass-cache
 node_modules
 *.class
+lljsSamples/LLJS
