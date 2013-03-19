@@ -1,9 +1,8 @@
 include ../../mk.defines
 CFILES=$(wildcard *.c)
-OBJS=$(CFILS:.c=.o)
-sinclude $(CFILS:.c=.o)
+OBJS=$(CFILES:.c=.o)
 BINARIES=$(CFILES:.c=$(EXEEXT))
-
+TARGET?=labelgoto_macro
 CFLAGS=-Wall
 
 all: mk-binaries
