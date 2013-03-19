@@ -10,3 +10,4 @@ build
 *.exe
 .sass-cache
 node_modules
+*.class
