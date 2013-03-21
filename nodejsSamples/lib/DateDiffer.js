@@ -1,4 +1,3 @@
-// DateDiffer sample code
 /*
 MIT License
 Copyright (C) 2012 Ben Wei (ben@staros.mobi)
@@ -11,19 +10,23 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 */
 
 function DateDiffer(startDate) {
+    "use strict";
     var self = this;
-    self.reset= function (startDate) {
-        if (!startDate)
-          self.dtstart = new Date();
-        else
-          self.dtstart = startDate;
-    }
+    var start;
+
+    self.reset = function (startDate) {
+          start = (startDate) ? startDate : new Date();
+    };
 
     self.reset(startDate);
 
     self.difference = function () {
-        var dtend = new Date();
-        return dtend.getTime() - self.dtstart.getTime();
+        var end = new Date();
+        return end.getTime() - start.getTime();
+    };
+
+    self.differenceInDays = function () {
+        return parseInt(self.difference() / 86400000);
     };
 }
 
