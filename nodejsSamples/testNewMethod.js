@@ -1,9 +1,4 @@
-
-
-Function.prototype.method = function (name, func) {
-    this.prototype[name] = func;
-    return this;
-}
+require('./lib/Method');
 
 Number.method('add', function (b) {
     console.log(parseInt(this));
