@@ -1,12 +1,5 @@
 require('./lib/Method');
 
-// reference the good parts : page 49
-
-Function.method('inherits', function (Parent) {
-    this.prototype = new Parent();
-    return this;
-});
-
 function Book(name, price)
 {
     this.name = name;
