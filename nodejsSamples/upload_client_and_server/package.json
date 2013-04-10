@@ -1,0 +1,21 @@
+{
+  "author": "Ben Wei",
+  "name": "bnwuploader",
+  "keywords": ["upload", "multipart", "http"],
+  "description": "uploader client and server",
+  "version": "0.1.0",
+  "repository": "",
+  "homepage": "https://github.com/benwei/Learnings/nodejsSamples/upload_client_and_server",
+  "engines": {
+    "node": ">=0.8.0 < 0.9.0"
+  },
+  "dependencies": {
+    "formidable": "~1.0.9",
+    "mime": "~1.2.5"
+  },
+  "bin": {
+    "server": "./file_server.js"
+  },
+  "devDependencies": {
+  }
+}

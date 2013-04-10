@@ -10,3 +10,7 @@ build
 *.exe
 .sass-cache
 node_modules
+*.class
+lljsSamples/LLJS
+*.log
+output

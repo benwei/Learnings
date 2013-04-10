@@ -1,0 +1,28 @@
+
+/* variable sample from http://lljs.org/ */
+extern console;
+
+let x;               // Declare 'x' as dyn.
+let int y;           // Declare 'y' as int.
+
+y = (int)(x);        /* Assignment of 'x' to 'y' requires an explicit
+                        cast. */
+
+let int z = y + 1;   /* Although 'y' is of type int, the binary
+                        expression y + 1 is of type num and
+                        requires an implicit cast. */
+
+let uint w = z;      /* Unsigned integer types are supported but
+                        are discouraged because JavaScript engines
+                        usually store numbers that are larger than
+                        max signed int in doubles rather than 32-bit
+                        ints. */
+
+console.log("Empty For loop with signed integers.");
+for (let int i = 0; i < 50000000; ++i) { }
+
+console.log("Empty For loop with unsigned integers.");
+for (let uint i = 0; i < 50000000; ++i) { }
+
+console.log("Empty For loop with untyped integers.");
+for (let i = 0; i < 50000000; ++i) { }

@@ -1,4 +1,16 @@
 
+# file exists check in header part 
+ifneq ($(wildcard hello.o),)
+OBJEXISTED=1
+endif
+
+# file exists check by shell
+define fileexists
+@if [ -f "$1" ]; then \
+	echo "found $1 before build" ; \
+fi
+endef
+
 define TEST
 $(eval INNERVAR := $(1))
 echo Using EVAL: INNERVAR = $(INNERVAR)
@@ -28,8 +40,14 @@ endef
 tempfile=build/hello-temp.c
 
 all:
+
+ifeq ($(OBJEXISTED),1)
+	$(call fileexists,hello.o)
+endif
+
 # check variable state 
 	@echo $(flavor INNERVAR)
+
 # call for variable api definition
 ifeq ($(flavor INNERVAR),undefined)
 	$(call TEST, TestA)
