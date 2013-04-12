@@ -1,11 +1,17 @@
+CFLAGS=-Wall -I.
+CFILES=test.c main.c
+OBJS=$(CFILES:.c=.o)
 
 all: run
 
-testnum: test.c
-	gcc -o $@  $^
+.c.o:
+	gcc -c $(CFLAGS) -o $@ $<
+
+testnum: $(OBJS)
+	gcc -o $@ $^
 
 run: testnum
 	./$^
 
 clean:
-	rm -f testnum
+	rm -f testnum *.o
