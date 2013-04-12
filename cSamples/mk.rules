@@ -1,0 +1,12 @@
+
+.c.o:
+	gcc -c $(CFLAGS) -o $@ $<
+
+$(TARGET): $(OBJS)
+	gcc -o $@ $^
+
+run: $(TARGET)
+	./$^
+
+clean:
+	rm -f $(TARGET) *.o

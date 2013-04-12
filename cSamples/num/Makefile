@@ -1,17 +1,8 @@
-CFLAGS=-Wall -I.
+CFLAGS=-Wall -I. -I../socase
 CFILES=test.c main.c
 OBJS=$(CFILES:.c=.o)
+TARGET=testnum
 
 all: run
 
-.c.o:
-	gcc -c $(CFLAGS) -o $@ $<
-
-testnum: $(OBJS)
-	gcc -o $@ $^
-
-run: testnum
-	./$^
-
-clean:
-	rm -f testnum *.o
+include ../mk.rules

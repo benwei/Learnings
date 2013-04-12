@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "test.h"
+#include "socase.h"
 
 static void dump_num_string(const char *buf, int n, char success) {
 	printf("(%c) %-2d -> [%11s]\n", success, n, buf);
@@ -30,7 +31,7 @@ int main(int argc, char **argv)
 
     for (; c->num ; c++) {
 	n = convert_num(c->num, c->disp_len, c->disp_shift, buf);
-    dump_num_string(buf, n, n == c->match ? 'O': 'X');
+    dump_num_string(buf, n, SO_CASE_EQUAL(n, c->match));
     }
 	return 0;
 }
