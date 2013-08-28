@@ -16,6 +16,7 @@ static pthread_mutex_t thread_lock = PTHREAD_MUTEX_INITIALIZER;
 
 static void thread_monitor(struct targs *arg)
 {
+    printf("tid (%08lx) started\n", (long) pthread_self());
     do {
         /* without lock the up_counter will be correct */
         pthread_mutex_lock(&thread_lock);
@@ -24,6 +25,7 @@ static void thread_monitor(struct targs *arg)
         printf("thread%d(%08lx) A%d %lu\n", arg->num, (long)arg->thread,  arg->counter, up_counter);
         usleep(500);
     } while (arg->counter++ < arg->max) ;
+    pthread_exit(0);
 }
 
 int main()
