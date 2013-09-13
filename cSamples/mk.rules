@@ -3,7 +3,7 @@
 	gcc -c $(CFLAGS) -o $@ $<
 
 $(TARGET): $(OBJS)
-	gcc -o $@ $^
+	gcc $(LDFLAGS) -o $@ $^
 
 run: $(TARGET)
 	./$^

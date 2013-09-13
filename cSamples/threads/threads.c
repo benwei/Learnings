@@ -28,11 +28,16 @@ static void thread_monitor(struct targs *arg)
     pthread_exit(0);
 }
 
+thread_routine thread_routines[2];
+
 int main()
 {
     struct targs threads[2] = {};
     void *value = NULL;
     int i = 0;
+    thread_routines[0] = (thread_routine) thread_monitor;
+    thread_routines[1] = (thread_routine) thread_monitor;
+
     pthread_mutex_init(&thread_lock, NULL);
     for (i = 0; i < 2; i++) {
         struct targs *ta = &threads[i];
