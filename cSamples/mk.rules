@@ -1,9 +1,9 @@
 
 .c.o:
-	gcc -c $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) -o $@ $<
 
 $(TARGET): $(OBJS)
-	gcc $(LDFLAGS) -o $@ $^
+	$(CC) $(LDFLAGS) -o $@ $^
 
 run: $(TARGET)
 	./$^
