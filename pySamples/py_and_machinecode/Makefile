@@ -2,4 +2,4 @@
 all:
 
 clean:
-	rm -f *.s *.o
+	rm -f *.o
