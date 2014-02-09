@@ -1,0 +1,18 @@
+
+CFILES := $(wildcard *.c)
+TARGETS := $(CFILES:.c=)
+OBJS := $(patsubst %.c,%.o,$(CFILES))
+
+all: $(TARGETS)
+
+% : %.o
+	$(CC) $< $(LDFLAGS) -o $@
+
+run: $(TARGETS)
+	@for i in $(TARGETS) ; do \
+	echo == exec ./$$i $(RUN_ARGS) ; \
+	./$$i $(RUN_ARGS) ; \
+	done
+
+clean:
+	rm -f $(TARGETS) *.o
