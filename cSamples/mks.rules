@@ -9,10 +9,15 @@ all: $(TARGETS)
 	$(CC) $< $(LDFLAGS) -o $@
 
 run: $(TARGETS)
-	@for i in $(TARGETS) ; do \
-	echo == exec ./$$i $(RUN_ARGS) ; \
-	./$$i $(RUN_ARGS) ; \
+	@for target in $(TARGETS) ; do \
+		argname="RUN_ARGS_$$target" ; \
+		make test-single TARGET=$$target TARGET_ARGS="$${argname}" ; \
 	done
+
+test-single: 
+	@echo == exec ./$(TARGET) $($(TARGET_ARGS)) ; \
+	./$(TARGET) $($(TARGET_ARGS)) ; 
 
 clean:
 	rm -f $(TARGETS) *.o
+
