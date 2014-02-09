@@ -6,7 +6,7 @@ $(TARGET): $(OBJS)
 	$(CC) $(LDFLAGS) -o $@ $^
 
 run: $(TARGET)
-	./$^
+	./$^ $(RUN_ARGS)
 
 clean:
 	rm -f $(TARGET) *.o
