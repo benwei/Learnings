@@ -3,10 +3,23 @@ CFILES := $(wildcard *.c)
 TARGETS := $(CFILES:.c=)
 OBJS := $(patsubst %.c,%.o,$(CFILES))
 
-all: $(TARGETS)
+all: build-targets
 
-% : %.o
-	$(CC) $< $(LDFLAGS) -o $@
+.c.o:
+	@echo compiling [$<] ; 
+	$(CC) -c $< -o $@ $(CFLAGS)
+
+$(BINFILE) : $(BINFILE).o
+	@echo linking [$@] ;
+	$(CC) $< -o $@ $(LDFLAGS) 
+
+build-target: $(BINFILE)
+
+build-targets:
+	@for target in $(TARGETS); do \
+		echo == build [$$target] ==; \
+		make build-target BINFILE=$$target; \
+	done
 
 run: $(TARGETS)
 	@for target in $(TARGETS) ; do \
