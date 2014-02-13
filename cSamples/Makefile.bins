@@ -1,0 +1,36 @@
+
+CFILES := $(wildcard *.c)
+TARGETS := $(CFILES:.c=)
+OBJS := $(patsubst %.c,%.o,$(CFILES))
+
+all: build-targets
+
+.c.o:
+	@echo compiling [$<] ; 
+	$(CC) -c $< -o $@ $(CFLAGS)
+
+$(BINFILE) : $(BINFILE).o
+	@echo linking [$@] ;
+	$(CC) $< -o $@ $(LDFLAGS) 
+
+build-target: $(BINFILE)
+
+build-targets:
+	@for target in $(TARGETS); do \
+		echo == build [$$target] ==; \
+		make build-target BINFILE=$$target; \
+	done
+
+run: $(TARGETS)
+	@for target in $(TARGETS) ; do \
+		argname="RUN_ARGS_$$target" ; \
+		make test-single TARGET=$$target TARGET_ARGS="$${argname}" ; \
+	done
+
+test-single: 
+	@echo == exec ./$(TARGET) $($(TARGET_ARGS)) ; \
+	./$(TARGET) $($(TARGET_ARGS)) ; 
+
+clean:
+	rm -f $(TARGETS) *.o
+
