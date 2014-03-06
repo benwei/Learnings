@@ -73,5 +73,8 @@ mytest: lua_objs.a $(OBJS)
 run: mytest
 	LD_LIBRARY_PATH=/usr/local/lib/ $(LEADING) ./mytest $(ARGS)
 
+hellolua.h: hello.lua
+	$(LUAJIT) -b $< $@
+
 clean:
-	rm -rf $(LUAJIT_OUTPUT) *.o mytest *.a build
+	rm -rf $(LUAJIT_OUTPUT) *.o mytest *.a build hellolua.h
