@@ -1,3 +1,5 @@
+COMMON_CFILES := $(wildcard common/*.c)
+COMMON_OBJS := $(COMMON_CFILES:.c=.o)
 
 CFILES := $(wildcard *.c)
 TARGETS := $(CFILES:.c=)
@@ -9,9 +11,9 @@ all: build-targets
 	@echo compiling [$<] ; 
 	$(CC) -c $< -o $@ $(CFLAGS)
 
-$(BINFILE) : $(BINFILE).o
+$(BINFILE) : $(BINFILE).o $(COMMON_OBJS)
 	@echo linking [$@] ;
-	$(CC) $< -o $@ $(LDFLAGS) 
+	$(CC) $^ -o $@ $(LDFLAGS) 
 
 build-target: $(BINFILE)
 
@@ -21,14 +23,17 @@ build-targets:
 		make build-target BINFILE=$$target; \
 	done
 
-run: $(TARGETS)
+run: 
 	@for target in $(TARGETS) ; do \
 		argname="RUN_ARGS_$$target" ; \
 		make test-single TARGET=$$target TARGET_ARGS="$${argname}" ; \
 	done
 
 test-single: 
-	@echo == exec ./$(TARGET) $($(TARGET_ARGS)) ; \
+	@if [ ! -f $(TARGET) ]; then \
+		make build-target BINFILE=$(TARGET) ; \
+	fi 
+	@echo "exec ./$(TARGET) $($(TARGET_ARGS))"; \
 	./$(TARGET) $($(TARGET_ARGS)) ; 
 
 clean:
