@@ -1,4 +1,4 @@
-# http://stackoverflow.com/questions/11317269/how-to-compile-lua-scripts-into-a-single-executable-while-still-gaining-the-fas
+# reference option -b from http://stackoverflow.com/questions/11317269/how-to-compile-lua-scripts-into-a-single-executable-while-still-gaining-the-fas
 
 luajit=$(shell which luajit)
 INCS+= -I/usr/include/lua5.1
@@ -6,7 +6,7 @@ CFLAGS = -O2 -Wall -Wl,-E $(INCS)
 
 LDFLAGS = -lluajit-5.1 -lm -ldl
 
-LUA_FILES = main.lua hello.o
+LUA_FILES = main.lua hello.lua
 LUAJIT_OUTPUT = lua_o
 LUA_OBJS = $(addprefix $(LUAJIT_OUTPUT)/,$(LUA_FILES:.lua=.o))
 
