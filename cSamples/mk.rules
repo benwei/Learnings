@@ -7,9 +7,9 @@
 
 $(TARGET): $(OBJS)
 ifeq ($(CXXFILES),)
-	$(CC) $(LDFLAGS) -o $@ $^
+	$(CC) -o $@ $^ $(LDFLAGS) 
 else
-	$(CXX) $(LDFLAGS) -o $@ $^
+	$(CXX) -o $@ $^ $(LDFLAGS) 
 endif
 
 run: $(TARGET)
