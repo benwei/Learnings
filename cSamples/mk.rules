@@ -1,6 +1,9 @@
 
+depends ?= $(OBJS:.o=.p)
+
 .c.o:
-	$(CC) -c $(CFLAGS) -o $@ $<
+#$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC) -MMD -MF ${@:.o=.p} -c $(CFLAGS) -o $@ $<
 
 .cpp.o:
 	$(CXX) -c $(CXXFLAGS) -o $@ $<
@@ -12,8 +15,10 @@ else
 	$(CXX) -o $@ $^ $(LDFLAGS) 
 endif
 
-run: $(TARGET)
-	./$^ $(RUN_ARGS)
+run: $(OBJS) $(TARGET)
+	./$(TARGET) $(RUN_ARGS)
 
 clean:
-	rm -f $(TARGET) *.o
+	rm -f $(TARGET) *.o $(depends)
+
+-include $(depends)
