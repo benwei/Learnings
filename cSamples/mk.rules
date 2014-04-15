@@ -2,8 +2,15 @@
 .c.o:
 	$(CC) -c $(CFLAGS) -o $@ $<
 
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) -o $@ $<
+
 $(TARGET): $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ $^
+ifeq ($(CXXFILES),)
+	$(CC) -o $@ $^ $(LDFLAGS) 
+else
+	$(CXX) -o $@ $^ $(LDFLAGS) 
+endif
 
 run: $(TARGET)
 	./$^ $(RUN_ARGS)
