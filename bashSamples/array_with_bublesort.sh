@@ -46,13 +46,7 @@ bubble_sort_without_optimization() {
     while [ $i -gt 0 ]; do
         j=0
         while [ $j -lt $i ]; do
-            if [ $debug_verbose -gt 0 ]; then
-                echo "${myarray[$i]} vs ${myarray[$j]}"
-            fi
             if [ ${myarray[$j]} -gt ${myarray[$i]} ] ; then
-                if [ $debug_verbose -gt 0 ]; then
-                    echo "swap element $j,$i ==> ${myarray[$i]} vs ${myarray[$j]}"
-                fi
                 tmp=${myarray[$i]}
                 myarray[$i]=${myarray[$j]}
                 myarray[$j]=$tmp
@@ -63,7 +57,6 @@ bubble_sort_without_optimization() {
         done
         i=$((i-1))
     done
-    echo "total loop count is $loop_count"
 }
 
 
@@ -74,13 +67,7 @@ bubble_sort_optimization() {
         i=1
         while [ $i -lt $n ]; do
             prev_i=$((i-1))
-            if [ $debug_verbose -gt 0 ]; then
-                echo "${myarray[$prev_i]} vs ${myarray[$i]}"
-            fi
             if [ ${myarray[$prev_i]} -gt ${myarray[$i]} ] ; then
-                if [ $debug_verbose -gt 0 ]; then
-                    echo "swap element $i,$j ==> ${myarray[$previ]} vs ${myarray[$i]}"
-                fi
                 tmp=${myarray[$prev_i]}
                 myarray[$prev_i]=${myarray[$i]}
                 myarray[$i]=$tmp
@@ -91,7 +78,6 @@ bubble_sort_optimization() {
         done
         n=$newn
     done
-    echo "total loop count is $loop_count"
 }
 
 dumparray ()
@@ -108,7 +94,11 @@ dumparray ()
 myarray=(6 8 9 0 3 2 1 5 7 4)
 bubble_sort_without_optimization
 dumparray
+stress_count=1
+
+for ((m=0; m<stress_count; ++m)) ; do
 loop_count=0
 myarray=(6 8 9 0 3 2 1 5 7 4)
 bubble_sort_optimization
+done
 dumparray
