@@ -2,14 +2,16 @@
 pkgname=CUnit-2.1-2
 tarball=${pkgname}-src.tar.bz2
 
+
 download_cuint_tarball()
 {
     if [ -f $tarball ]; then
         return 0;
     fi
 
-    wget -O $tarball 'http://downloads.sourceforge.net/project/cunit/CUnit/2.1-2/CUnit-2.1-2-src.tar.bz2\?r\=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fcunit%2F\&ts\=1394792165\&use_mirror\=nchc' ;
+    wget -O "$tarball" 'http://downloads.sourceforge.net/project/cunit/CUnit/2.1-2/CUnit-2.1-2-src.tar.bz2'
     if [ $? -ne 0 ]; then
+        rm -f "$tarball"
         return 1;
     fi
 }
