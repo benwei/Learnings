@@ -42,10 +42,38 @@ static CU_TestInfo tests_success[] = {
   CU_TEST_INFO_NULL,
 };
 
-static CU_SuiteInfo suites[] = {
+static CU_SuiteInfo suites1[] = {
   { "suite_success_both",  test_tearup, test_teardown, tests_success},
 	CU_SUITE_INFO_NULL,
 };
+
+#define CHARNUM_TO_INT(c) ((c>='0' && c <= '9') ? c -'0' : c)
+#define ABS(c) ((c < 0)? -c:c)
+static void test_my_hex(void)
+{
+    int c = '9';
+    int r = CHARNUM_TO_INT(c);
+    CU_ASSERT_EQUAL(r, 9);
+}
+
+static void test_my_abs(void)
+{
+    int c = -1;
+    int r = ABS(c);
+    CU_ASSERT_EQUAL(r, 1);
+}
+
+static CU_TestInfo tests_success2[] = {
+  { "test_my_hex", test_my_hex},
+  { "test_my_abs", test_my_abs},
+  CU_TEST_INFO_NULL,
+};
+
+static CU_SuiteInfo suites2[] = {
+  { "suite_success_both",  test_tearup, test_teardown, tests_success2},
+	CU_SUITE_INFO_NULL,
+};
+
 
 #define E_REGFAIL 2
 
@@ -58,7 +86,13 @@ int do_tests()
     assert(NULL != CU_get_registry());
     assert(!CU_is_test_running());
 
-    if (CU_register_suites(suites) != CUE_SUCCESS) {
+    if (CU_register_suites(suites1) != CUE_SUCCESS) {
+        fprintf(stderr, "suite registration failed - %s\n", CU_get_error_msg());
+
+        return E_REGFAIL;
+    }
+
+    if (CU_register_suites(suites2) != CUE_SUCCESS) {
         fprintf(stderr, "suite registration failed - %s\n", CU_get_error_msg());
 
         return E_REGFAIL;
