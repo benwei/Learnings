@@ -1,6 +1,16 @@
 #include <stdio.h>
-/* source http://stackoverflow.com/questions/8322782/rdtsc-too-many-cycles */
+#include <unistd.h> /* sleep usleep */
+#include <sys/time.h> /* clock_gettime */
+#include <time.h> /* clock_gettime */
 
+#ifndef CLOCK_REALTIME
+#define CLOCK_REALTIME 0
+#endif
+#define _BSD_SOURCE 1  /* usleep */
+
+/* tick()
+ * reference: source http://stackoverflow.com/questions/8322782/rdtsc-too-many-cycles 
+ **/
 static inline unsigned long long tick()
 { 
     unsigned long long d;
@@ -25,5 +35,24 @@ int main(int argc, char **argv)
     t2 = tick(); 
     printf("time cost of x mul 3 times: %llu\n", t2-t1);
  
+    t1 = tick();
+    sleep(1);
+    t2 = tick();
+    printf("time sleep(1): %llu\n", t2-t1);
+
+    t1 = tick();
+    usleep(10);
+    t2 = tick();
+    printf("time usleep(10): %llu\n", t2-t1);
+
+    {
+    struct timespec ts_start, ts_end;
+    clock_gettime(CLOCK_REALTIME, &ts_start);
+    usleep(10);
+    clock_gettime(CLOCK_REALTIME, &ts_end);
+    printf("clock_getdifftime usleep(10): s: %lu ns:%lu\n", 
+            ts_end.tv_sec - ts_start.tv_sec,
+            ts_end.tv_nsec - ts_start.tv_nsec);
+    }
     return 0;
 }
