@@ -1,12 +1,10 @@
+/* tested on gcc version 4.7.2 (Debian 4.7.2-5) */
+#define _POSIX_C_SOURCE 199309L /* clock_gettime */
+
 #include <stdio.h>
 #include <unistd.h> /* sleep usleep */
 #include <sys/time.h> /* clock_gettime */
 #include <time.h> /* clock_gettime */
-
-#ifndef CLOCK_REALTIME
-#define CLOCK_REALTIME 0
-#endif
-#define _BSD_SOURCE 1  /* usleep */
 
 /* tick()
  * reference: source http://stackoverflow.com/questions/8322782/rdtsc-too-many-cycles 
