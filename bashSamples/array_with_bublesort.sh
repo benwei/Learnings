@@ -37,8 +37,6 @@ if [ "$1" = "-d" ]; then
 debug_verbose=1
 fi
 
-loop_count=0
-
 bubble_sort_without_optimization() {
     i=1
     count=${#myarray[@]}
@@ -53,7 +51,6 @@ bubble_sort_without_optimization() {
             fi
 
             j=$((j+1))
-            loop_count=$((loop_count+1))
         done
         i=$((i-1))
     done
@@ -74,7 +71,6 @@ bubble_sort_optimization() {
                 newn=$i
             fi
             i=$((i+1))
-            loop_count=$((loop_count+1))
         done
         n=$newn
     done
@@ -91,14 +87,26 @@ dumparray ()
 }
 
 # main
-myarray=(6 8 9 0 3 2 1 5 7 4)
-bubble_sort_without_optimization
-dumparray
-stress_count=1
+cmd="$1"
+stress_count=3000
+test_bublesort()
+{
+    time for ((m=0; m < stress_count; ++m)) ; do
+    #        1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
+    myarray=(6 8 9 0 3 2 1 5 7 4 9 8 5 7 1)
+    bubble_sort_without_optimization
+    done
+}
 
-for ((m=0; m<stress_count; ++m)) ; do
-loop_count=0
-myarray=(6 8 9 0 3 2 1 5 7 4)
-bubble_sort_optimization
-done
-dumparray
+
+test_bublesort_optimatization()
+{
+    time for ((m=0; m < stress_count; ++m)) ; do
+    myarray=(6 8 9 0 3 2 1 5 7 4 9 8 5 7 1)
+    bubble_sort_optimization
+    done
+}
+
+
+test_bublesort
+test_bublesort_optimatization
