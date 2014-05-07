@@ -30,22 +30,24 @@ static void thread_monitor(struct targs *arg)
 
 thread_routine thread_routines[2];
 
+#define MAX_THREADS 2
+
 int main()
 {
-    struct targs threads[2] = {};
+    struct targs threads[MAX_THREADS] = {};
     void *value = NULL;
     int i = 0;
     thread_routines[0] = (thread_routine) thread_monitor;
     thread_routines[1] = (thread_routine) thread_monitor;
 
     pthread_mutex_init(&thread_lock, NULL);
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < MAX_THREADS; i++) {
         struct targs *ta = &threads[i];
         printf("thread %d created\n", i);
         ta->num = i;
         ta->counter = 1;
         ta->max = 5;
-        pthread_create(&ta->thread, NULL, (thread_routine) thread_monitor, ta);
+        pthread_create(&ta->thread, NULL, (thread_routine) thread_routines[i], ta);
     }
 
     for (i = 0; i < 2; i++) {
