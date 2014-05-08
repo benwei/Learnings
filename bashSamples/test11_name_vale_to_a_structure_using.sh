@@ -1,6 +1,6 @@
 #!/bin/bash
 # sample from http://stackoverflow.com/questions/6046176/bash-adding-a-name-value-to-a-structure-using-bash
-
+# OSX 10.9.2 is not supported
 declare -A a=(
         [LC1]="Test1 Test2"
         [LC2]="Test3 Test4"
