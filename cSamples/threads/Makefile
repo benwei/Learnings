@@ -1,5 +1,6 @@
 CFLAGS=-Wall -I.  -g
 CFILES=threads.c
+LDFLAGS=-lpthread
 OBJS=$(CFILES:.c=.o)
 TARGET=case_threads
 
