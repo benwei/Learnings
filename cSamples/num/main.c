@@ -7,7 +7,7 @@ static void dump_num_string(const char *buf, int n, char success) {
 }
 
 struct so_case {
-    unsigned long num;
+    ulong num;
     int disp_len;
     int disp_shift;
     int match;
@@ -16,10 +16,10 @@ struct so_case {
 typedef struct so_case *so_case_t;
 
 static struct so_case test_cases[] = {
-    {12345,    6, 0, 6},
-    {12345,    6, 1, 6},
-    {12345789, 6, 0, 8},
-    {1<<21,    6, 0, 7},
+    {12345,    6, 0, 5},
+    {12345,    6, 1, 5},
+    {12345789, 6, 0, 6},
+    {1<<21,    10, 1, 7},
     {0,        0, 0, 0}
 };
 
