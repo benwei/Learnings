@@ -1,3 +1,10 @@
+/* \file threads.c
+ * \brief an example that producer and workers handle tasks.
+ * using pthread_cond_signal and pthread_cond_wait
+ * to implement the notify and receive mechanism. 
+ * \note: written by ben6 2014.05
+ **/
+
 #include <stdio.h>
 #include <unistd.h> /* usleep */
 #include <pthread.h>
