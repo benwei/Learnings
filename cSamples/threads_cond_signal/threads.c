@@ -28,8 +28,6 @@ static pthread_mutex_t thread_lock = PTHREAD_MUTEX_INITIALIZER;
 static int work_wait_exit_counter = MAX_WORKERS;
 
 thread_routine thread_routines[MAX_RUNNING_THREADS];
-static int task_count = 0;
-static int task_ring[MAX_TASKS] = {};
 static int task_queue_count = 0;
 
 static int new_task_to_queue(void)
