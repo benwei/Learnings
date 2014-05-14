@@ -6,7 +6,7 @@
  **/
 
 #include <stdio.h>
-#include <unistd.h> /* usleep */
+#include <unistd.h> /* usleep with _BSD_SOURCE */
 #include <pthread.h>
 
 struct targs {

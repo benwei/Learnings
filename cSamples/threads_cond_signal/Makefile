@@ -1,4 +1,4 @@
-CFLAGS=-Wall -I.  -g
+CFLAGS=-Wall -I.  -g -std=c90 -D_BSD_SOURCE
 LDFLAGS=-lpthread
 CFILES=threads.c
 OBJS=$(CFILES:.c=.o)
