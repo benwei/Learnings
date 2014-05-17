@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html ng-app>
+    <head>
+        <title>AngularJS 計算機</title>
+        <script type="text/javascript" src="http://code.angularjs.org/angular-1.0.1.min.js"></script>
+    </head>
+    <body>
+        <h1>AngularJs 計算機:</h1>
+        <p>{{expression || 'expression'}} = <span ng-bind="$eval(expression)"></span></p>
+        <label>輸入你的算式，Angular即時運算</label>
+        <input type="text" ng-model="expression">
+    </body>
+</html>
+
