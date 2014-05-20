@@ -16,10 +16,10 @@ static void *Object_ctor(void *_self, va_list *app)
     const uint32_t id = va_arg(*app, uint32_t);
 
     if (id) {
-            self->object_id = id;
-        } else {
-                self->object_id = object_id++;
-            }
+        self->object_id = id;
+    } else {
+        self->object_id = object_id++;
+    }
 
     return self;
 }
@@ -46,11 +46,11 @@ static int Object_differ(const void *_self, const void *_b)
     const struct Object *b = _b;
 
     if (self == b) {
-            return 0;
-        }
+        return 0;
+    }
     if (! b || b->class != Object) {
-            return 1;
-        }
+        return 1;
+    }
 
     return self->object_id != b->object_id;
 }

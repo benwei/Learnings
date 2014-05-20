@@ -1,10 +1,17 @@
 #include <assert.h>
 #include <stdarg.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <Point.h>
 
 #include "class.h"
 #include "Point.h"
+
+static int Point_draw(void *_self) {
+    struct Point *self = _self;
+    printf("draw point: (x,y) = %d,%d\n", self->x, self->y);
+    return 0;
+}
 
 static void *Point_ctor(void *_self, va_list *app)
 {
@@ -12,7 +19,8 @@ static void *Point_ctor(void *_self, va_list *app)
     int x = va_arg(*app, int);
     /* FIXME: how to check there is missing y argument?? */
     int y = va_arg(*app, int);
-
+    self->class_name = "Point";
+    self->draw = Point_draw;
     self->x = x;
     self->y = y;
     return self;

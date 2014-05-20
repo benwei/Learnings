@@ -6,8 +6,10 @@ extern const void *Point;
 
 struct Point {
     const void *class;
+    char *class_name;
     int x;
     int y;
+    int (*draw)(void *_self);
 };
 
 #endif

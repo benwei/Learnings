@@ -22,7 +22,7 @@ int main(int argc, char **argv)
     printf("changed OOC: point (x,y) = (%d,%d)\n", point->x, point->y);
     printf("OOC: second (x,y) = (%d,%d)\n", second->x, second->y);
     printf("OOC: third (x, undefined) = (%d,%d), random value on y.\n", third->x, third->y);
-
+    point->draw(point);
     delete(point);
     delete(second);
     delete(third);
