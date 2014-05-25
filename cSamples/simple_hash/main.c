@@ -3,20 +3,7 @@
  */
 
 #include <stdio.h> /* printf */
-
-unsigned long hash(char const *input)
-{
-    const unsigned long hval_size = 32;
-    unsigned long hval = 0x777777;
-    const unsigned long per_char = 13;
-
-    while (*input)
-    {
-        hval ^= *input++;
-        hval = ((hval << per_char) | (hval >> (hval_size - per_char)));
-    }
-    return hval;
-}
+#include "hash.h"
 
 int main(int argc, char **argv)
 {

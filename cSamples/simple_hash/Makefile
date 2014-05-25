@@ -1,4 +1,4 @@
-CFILES = main.c
+CFILES = main.c hash.c
 OBJS = $(CFILES:.c=.o)
 INCS =-I.
 CFLAGS = -Wall -std=c99 -pedantic 
