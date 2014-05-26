@@ -1,5 +1,5 @@
 /* \brief hash table api
- * \note hash_add, hash_find
+ * \note hash_table_add_node, hash_table_find_node
  * written by ben6 2014-05
  */
 
@@ -9,6 +9,12 @@
 #include <errno.h>
 #include "hash.h"
 
+#ifdef DEBUG
+# define BLOG(...) printf(__VA_ARGS__)
+#else
+# define BLOG(...)
+#endif
+
 typedef struct node {
     unsigned long hash;
     char *value;
@@ -17,10 +23,10 @@ typedef struct node {
     struct node *next;
 } hash_node;
 
-#define HASH_NUM 13
-static hash_node *hash_table[HASH_NUM] = {0};
+#define HASH_TABLE_SIZE 13
+static hash_node *hash_table[HASH_TABLE_SIZE] = {0};
 
-static inline void hash_node_append(hash_node *root, hash_node *node)
+static inline void hash_table_node_append(hash_node *root, hash_node *node)
 {
     hash_node *p;
     unsigned int index = 1;
@@ -30,7 +36,7 @@ static inline void hash_node_append(hash_node *root, hash_node *node)
     p->next = node;
 }
 
-static hash_node* hash_add(const char* value)
+static hash_node* hash_table_add_node(const char* value)
 {
     unsigned location = 0;
     hash_node *root = NULL;
@@ -43,11 +49,11 @@ static hash_node* hash_add(const char* value)
         goto err_end;
 
     node->next = NULL;
-    location = node->hash % HASH_NUM;
+    location = node->hash % HASH_TABLE_SIZE;
     node->loc = location;
     if ((root = hash_table[location]) != NULL)
     {
-        hash_node_append(root, node);
+        hash_table_node_append(root, node);
     } else {
         hash_table[location] = node;
         node->index = 0;
@@ -59,9 +65,9 @@ err_end:
     return NULL;
 }
 
-static hash_node* hash_find(const char *value) {
+static hash_node* hash_table_find_node(const char *value) {
     unsigned long hash_value = hash(value);
-    unsigned int location = hash_value % HASH_NUM;
+    unsigned int location = hash_value % HASH_TABLE_SIZE;
     hash_node *root = hash_table[location];
     if (root == NULL)
         return NULL;
@@ -86,15 +92,15 @@ static inline void free_node_list(hash_node *root)
     hash_node *p;
     for (p = root; p != NULL;) {
         p = root->next;
-        // printf("free node %p\n", (void *)root);
+        // BLOG("free node %p\n", (void *)root);
         free_node(root);
         root = p;
     }
 }
 
-static void free_hash_table(void) {
+static void hash_table_free(void) {
     unsigned int i ;
-    for (i = 0; i < HASH_NUM; i++) {
+    for (i = 0; i < HASH_TABLE_SIZE; i++) {
         hash_node *root = hash_table[i];
         if (root != NULL) {
             free_node_list(root);
@@ -109,17 +115,17 @@ int main(int argc, char **argv)
     hash_node *node ;
     for (int i = 0; i < 10; i++) {
         data1[0] = i+'0';
-        node = hash_add(data1);
-        printf("add %p->[%u][%u]=%s\n", (void *)node, node->loc, node->index, node->value);
+        node = hash_table_add_node(data1);
+        BLOG("add %p->[%u][%u]=%s\n", (void *)node, node->loc, node->index, node->value);
         data2[0] = i+'0';
-        node = hash_add(data2);
-        printf("add %p->[%u][%u]=%s\n", (void *)node, node->loc, node->index, node->value);
+        node = hash_table_add_node(data2);
+        BLOG("add %p->[%u][%u]=%s\n", (void *)node, node->loc, node->index, node->value);
     }
 
-    node = hash_find(data1);
+    node = hash_table_find_node(data1);
     printf("found %p->[%u][%u]=%s\n", (void *)node, node->loc, node->index, node->value);
-    node = hash_find(data2);
+    node = hash_table_find_node(data2);
     printf("found %p->[%u][%u]=%s\n", (void *)node, node->loc, node->index, node->value);
-    free_hash_table();
+    hash_table_free();
     return 0;
 }
