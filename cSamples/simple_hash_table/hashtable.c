@@ -1,5 +1,5 @@
 /* \brief hash table api
- * \note hash_table_add_node, hash_table_find_node
+ * \note hash table features with add, find
  * written by ben6 2014-05
  */
 
@@ -10,10 +10,10 @@
 #include "hash.h"
 #include "hashtable.h"
 
-#define HASH_TABLE_SIZE 13
-static hash_node *hash_table[HASH_TABLE_SIZE] = {0};
+#define hashtable_SIZE 13
+static hash_node *hashtable[hashtable_SIZE] = {0};
 
-static inline void hash_table_node_append(hash_node *root, hash_node *node)
+static inline void hashtable_append(hash_node *root, hash_node *node)
 {
     hash_node *p;
     unsigned int index = 1;
@@ -23,7 +23,7 @@ static inline void hash_table_node_append(hash_node *root, hash_node *node)
     p->next = node;
 }
 
-hash_node* hash_table_add_node(const char* value)
+hash_node* hashtable_add(const char* value)
 {
     unsigned location = 0;
     hash_node *root = NULL;
@@ -36,13 +36,13 @@ hash_node* hash_table_add_node(const char* value)
         goto err_end;
 
     node->next = NULL;
-    location = node->hash % HASH_TABLE_SIZE;
+    location = node->hash % hashtable_SIZE;
     node->loc = location;
-    if ((root = hash_table[location]) != NULL)
+    if ((root = hashtable[location]) != NULL)
     {
-        hash_table_node_append(root, node);
+        hashtable_append(root, node);
     } else {
-        hash_table[location] = node;
+        hashtable[location] = node;
         node->index = 0;
     }
     return node;
@@ -52,11 +52,11 @@ err_end:
     return NULL;
 }
 
-hash_node* hash_table_find_node(const char *value)
+hash_node* hashtable_find(const char *value)
 {
     unsigned long hash_value = hash(value);
-    unsigned int location = hash_value % HASH_TABLE_SIZE;
-    hash_node *root = hash_table[location];
+    unsigned int location = hash_value % hashtable_SIZE;
+    hash_node *root = hashtable[location];
     if (root == NULL)
         return NULL;
 
@@ -86,11 +86,11 @@ static inline void free_node_list(hash_node *root)
     }
 }
 
-void hash_table_free(void)
+void hashtable_free(void)
 {
     unsigned int i;
-    for (i = 0; i < HASH_TABLE_SIZE; i++) {
-        hash_node *root = hash_table[i];
+    for (i = 0; i < hashtable_SIZE; i++) {
+        hash_node *root = hashtable[i];
         if (root != NULL) {
             free_node_list(root);
         }

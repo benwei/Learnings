@@ -1,5 +1,4 @@
 /* \brief hash table api
- * \note hash_table_add_node, hash_table_find_node
  * written by ben6 2014-05
  */
 #ifndef _HASHTABLE_H
@@ -19,8 +18,8 @@ typedef struct node {
     struct node *next;
 } hash_node;
 
-hash_node* hash_table_add_node(const char* value);
-hash_node* hash_table_find_node(const char *value);
-void hash_table_free(void);
+hash_node* hashtable_add(const char* value);
+hash_node* hashtable_find(const char *value);
+void hashtable_free(void);
 
 #endif /* _HASHTABLE_H */

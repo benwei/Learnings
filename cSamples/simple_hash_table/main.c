@@ -1,5 +1,5 @@
 /* \brief hash table api
- * \note hash_table_add_node, hash_table_find_node
+ * \note hashtable_add_node, hashtable_find_node
  * written by ben6 2014-05
  */
 
@@ -16,17 +16,17 @@ int main(int argc, char **argv)
     hash_node *node ;
     for (int i = 0; i < 10; i++) {
         data1[0] = i+'0';
-        node = hash_table_add_node(data1);
+        node = hashtable_add(data1);
         BLOG("add %p->[%u][%u]=%s\n", (void *)node, node->loc, node->index, node->value);
         data2[0] = i+'0';
-        node = hash_table_add_node(data2);
+        node = hashtable_add(data2);
         BLOG("add %p->[%u][%u]=%s\n", (void *)node, node->loc, node->index, node->value);
     }
 
-    node = hash_table_find_node(data1);
+    node = hashtable_find(data1);
     printf("found %p->[%u][%u]=%s\n", (void *)node, node->loc, node->index, node->value);
-    node = hash_table_find_node(data2);
+    node = hashtable_find(data2);
     printf("found %p->[%u][%u]=%s\n", (void *)node, node->loc, node->index, node->value);
-    hash_table_free();
+    hashtable_free();
     return 0;
 }
