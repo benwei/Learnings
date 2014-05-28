@@ -4,12 +4,6 @@
 #ifndef _HASHTABLE_H
 #define _HASHTABLE_H
 
-#ifdef DEBUG
-# define BLOG(...) printf(__VA_ARGS__)
-#else
-# define BLOG(...)
-#endif
-
 typedef struct node {
     unsigned long hash;
     char *value;
@@ -20,6 +14,11 @@ typedef struct node {
 
 hash_node* hashtable_add(const char* value);
 hash_node* hashtable_find(const char *value);
+hash_node* hashtable_remove(const char *value);
+void hashtable_delete(const char *value);
+void hash_node_free(hash_node *node);
+
 void hashtable_free(void);
+
 
 #endif /* _HASHTABLE_H */

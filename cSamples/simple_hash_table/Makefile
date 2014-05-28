@@ -4,6 +4,7 @@ OBJS = $(CFILES:.c=.o)
 INCS =-I. -I../simple_hash
 CFLAGS = -Wall -std=c99 -pedantic -D_BSD_SOURCE
 CFLAGS += $(INCS)
+CFLAGS += $(OPTS)
 LDFLAGS =
 
 TARGET = chash
