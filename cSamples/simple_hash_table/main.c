@@ -51,6 +51,11 @@ int main(int argc, char **argv)
 
     node = hashtable_find(data2);
     dump_node("found", node);
+    if (node->loc == 5 && node->index ==3)
+        printf("[passed] hash node(%s) find testing after removal\n", data1);
+    else
+        printf("[failed] hash node(%s) find testing after remove\n", data1);
+
     hashtable_free();
     return 0;
 }
