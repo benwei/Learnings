@@ -19,6 +19,6 @@ run: $(OBJS) $(TARGET)
 	./$(TARGET) $(RUN_ARGS)
 
 clean:
-	rm -f $(TARGET) *.o $(depends)
+	@rm -f $(TARGET) *.o $(depends)
 
 -include $(depends)
