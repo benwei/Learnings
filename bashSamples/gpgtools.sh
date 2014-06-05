@@ -6,7 +6,9 @@ dst="$3"
 
 syntax()
 {
-	echo "syntax: <-e|-d> <src> <dst>"
+	cat <<- EOF
+    syntax: <-e|-d> <src> <dst>
+EOF
 }
 
 encode_file()

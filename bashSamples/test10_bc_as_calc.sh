@@ -11,10 +11,10 @@
 #  REQUIREMENTS: bc
 #          BUGS: ---
 #         NOTES: ---
-#        AUTHOR: YOUR NAME (ben6) 
+#        AUTHOR: Ben Wei (ben6) 
 #  ORGANIZATION: 
 #       CREATED: 05/07/2014 00:18
-#      REVISION:  ---
+#      REVISION:  2
 #===============================================================================
 scale=$2
 if [ -z "$scale" ]; then
@@ -23,8 +23,10 @@ fi
 exp="$1"
 if [ ! -n "$exp" ]; then
     exp='(3^3+6.34*1.5)/23'
-    echo "syntax: expression"
-    echo "ex:$exp"
+    cat <<- EOF
+syntax: expression
+ex:$exp
+EOF
 fi
 
 bc <<< "scale=$scale;$exp"
