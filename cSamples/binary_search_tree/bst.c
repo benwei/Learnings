@@ -16,16 +16,25 @@ void bst_node_dump(bstree *t);
 
 int bst_search(bstree *t, bskey key, bstree *parent, bstree**p)
 {
+    bstree *current;
     if(!t) {
         *p=parent;
         return 0;
-    } else if (key == t->key) {
-        *p=t;
-        return 1;
-    } else if ( key < t->key ) {
-        return bst_search(t->l, key, t, p);
-    } 
-    return bst_search(t->r, key, t, p);
+    }
+
+    current = t;
+    while (current != NULL)
+    {
+        *p=current;
+        if (key == current->key) {
+            return 1;
+        } else if (key < current->key) {
+            current = current->l;
+        } else {
+            current = current->r;
+        }
+    }
+    return 0;
 }
 
 int bst_insert(bstree**t, bskey key)
@@ -51,6 +60,17 @@ int bst_insert(bstree**t, bskey key)
         p->r=s;
 
     return 1; 
+}
+
+int bst_delete(bstree **t, bskey key)
+{
+    bstree *p = NULL;
+    if (t == NULL && bst_search(*t, key, NULL, &p) == 0) {
+        return 1;
+    }
+
+
+    return 0; 
 }
 
 void bst_node_dump(bstree *t)
