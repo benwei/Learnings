@@ -1,11 +1,8 @@
 #include <assert.h>
-#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <Point.h>
-
 #include "class.h"
-#include "Point.h"
+#include "point.h"
 
 static int Point_draw(void *_self) {
     struct Point *self = _self;

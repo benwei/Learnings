@@ -3,6 +3,7 @@
 #define _CLASS_H
 
 #include <stddef.h>
+#include <stdarg.h>
 
 struct Class {
     size_t size;
