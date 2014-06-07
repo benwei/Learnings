@@ -7,6 +7,8 @@
 #include "object.h"
 #include "point.h"
 
+extern int main_inherit();
+
 int main(int argc, char **argv)
 {
     struct Point *point = new(Point, 10, 20);
@@ -26,5 +28,7 @@ int main(int argc, char **argv)
     delete(point);
     delete(second);
     delete(third);
+
+    main_inherit();
     return 0;
 }
