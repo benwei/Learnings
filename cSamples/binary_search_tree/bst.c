@@ -12,7 +12,14 @@ struct _bstree {
     struct _bstree *r;
 };
 
-void bst_node_dump(bstree *t);
+
+int bst_node_getkey(bstree *node)
+{
+    if (node == NULL)
+        return -1;
+
+    return node->key;
+}
 
 int bst_search(bstree *t, bskey key, bstree *parent, bstree**p)
 {
@@ -73,12 +80,12 @@ int bst_delete(bstree **t, bskey key)
     return 0; 
 }
 
-void bst_node_dump(bstree *t)
+void bst_node_dump(bstree *node)
 {
-    if (t == NULL)
+    if (node == NULL)
         return;
 
-    printf("%lu\n", t->key);
+    printf("%lu\n", node->key);
 }
 
 void bst_traverse(bstree *t, int level, bst_callback callback)
@@ -90,3 +97,28 @@ void bst_traverse(bstree *t, int level, bst_callback callback)
     bst_traverse(t->r, level+1, callback);
 }
 
+int bst_findmin(bstree *t, bstree **p)
+{
+    bstree *current = t;
+    while (current != NULL)
+    {
+        *p=current;
+        if (current->l == NULL)
+            return 1;
+        current = current->l;
+    }
+    return 0;
+}
+
+int bst_findmax(bstree *t, bstree **p)
+{
+    bstree *current = t;
+    while (current != NULL)
+    {
+        *p=current;
+        if (current->r == NULL)
+            return 1;
+        current = current->r;
+    }
+    return 0;
+}
