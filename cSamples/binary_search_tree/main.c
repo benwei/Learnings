@@ -65,6 +65,18 @@ static ctest tests[] = {
     {NULL, NULL},
 };
 
+int test_traverse_morris(void)
+{
+    bstree *root = bst_new_node(4);
+    bstree *layer1_left = bst_new_node(2);
+    bstree *layer1_right = bst_new_node(5);
+    bst_node_set(root, layer1_left, layer1_right);
+    bst_node_set(layer1_left, bst_new_node(1), bst_new_node(3));
+    bst_node_set(layer1_right, bst_new_node(6), bst_new_node(7));
+    bst_traverse_morris(root, dump_value);
+    return 0;    
+}
+
 int main(int argc, char **argv)
 {
     bstree *tree = NULL;
@@ -74,7 +86,7 @@ int main(int argc, char **argv)
         printf("insert %d - result=%d\n", i, r);
     }
 
-    bst_traverse(tree, 0, dump_value);
+    bst_traverse_recursive(tree, 0, dump_value);
     r = 0;
 
     for (ctest *t = &tests[0]; t->desc != NULL; t++) {
@@ -82,6 +94,8 @@ int main(int argc, char **argv)
         printf("[%s] %s\n", retcode ? "fail": "pass", t->desc);
         r += retcode;
     }
+
+    test_traverse_morris();
 
     return r;
 }

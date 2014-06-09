@@ -44,6 +44,25 @@ int bst_search(bstree *t, bskey key, bstree *parent, bstree**p)
     return 0;
 }
 
+bstree *bst_new_node(bskey key)
+{
+    bstree *node = (bstree *) malloc(sizeof(bstree));
+    if (node == NULL)
+        return NULL;
+
+    node->key = key;
+    node->l = node->r = NULL;
+    return node;
+}
+
+void bst_node_set(bstree *node, bstree *left, bstree *right)
+{
+    if (node == NULL) return;
+
+    node->l = left;
+    node->r = right;
+}
+
 int bst_insert(bstree**t, bskey key)
 {
     bstree *p = NULL;
@@ -53,12 +72,10 @@ int bst_insert(bstree**t, bskey key)
         return 0;
     }
 
-    s = (bstree *) malloc(sizeof(bstree));
+    s = bst_new_node(key);
     if (s == NULL)
         return 0;
 
-    s->key = key;
-    s->l = s->r = NULL;
     if (!p)
         *t=s;
     else if (key < p->key)
@@ -88,13 +105,43 @@ void bst_node_dump(bstree *node)
     printf("%lu\n", node->key);
 }
 
-void bst_traverse(bstree *t, int level, bst_callback callback)
+void bst_traverse_recursive(bstree *t, int level, bst_callback callback)
 {
     if (t == NULL)
         return;
-    bst_traverse(t->l, level+1, callback);
+    bst_traverse_recursive(t->l, level+1, callback);
     callback(t->key, level);
-    bst_traverse(t->r, level+1, callback);
+    bst_traverse_recursive(t->r, level+1, callback);
+}
+
+void bst_traverse_morris(bstree *t, bst_callback callback)
+{
+    bstree *current = t, *morris = NULL;
+    if (t == NULL)
+        return;
+
+    while (current != NULL)
+    {
+        if (current->l == NULL)
+        {
+            callback(current->key, 0);
+            current = current->r;
+        } else {
+            morris = current->l;
+
+            while(morris->r != NULL && morris->r != current)
+                morris = morris->r;
+
+            if (morris->r == NULL) {
+                morris->r = current;
+                current = current->l;
+            } else {
+                morris->r = NULL;
+                callback(current->key, 0);
+                current = current->r;
+            }
+        }
+    }
 }
 
 int bst_findmin(bstree *t, bstree **p)
