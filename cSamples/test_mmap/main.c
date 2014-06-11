@@ -16,9 +16,8 @@
 #include <sys/types.h>
 #include <sys/mman.h> /* mmap */
 #include <errno.h>
-#include "soio.h"
+#include "filemap.h"
 
-#define TEST_FAILED 1
 #define MAX_BUF_SIZE 16
 
 int update_mapped_buf(char *addr)
@@ -36,6 +35,7 @@ int update_mapped_buf(char *addr)
         }
 
         loc = 0;
+        printf("write increased id %s to mapped address\n", buf);
 
         while (*buf != 0 && loc < MAX_BUF_SIZE) {
             *addr++ = buf[loc++];
@@ -46,56 +46,17 @@ int update_mapped_buf(char *addr)
 int main(int argc, char **argv)
 {
     int r = 0;
-    int pagesize = 0;
-    caddr_t addr = 0;
-    int fd;
-    int new_created = 0;
-    char *file = "file01.txt";
-    if (access(file, W_OK) == -1) {
-        fd = open(file, O_CREAT | O_RDWR);
-        new_created = 1;
-    } else
-        fd = open(file, O_RDWR);
 
-    if (fd == -1) {
-        perror("open");
-        r = TEST_FAILED;
-        goto err_end;
+    struct fileaddr *fa = NULL;
+    r = open_addr_file("file01.txt", &fa);
+    if (r == -1) {
+        fprintf(stderr, "errno=%d\n", errno);
+        return errno;
     }
 
-    int size = 16;
-    if (new_created == 1) {
-        fchmod(fd, 0777);
-        char *msg = (char *) malloc(size);
-        if (msg == NULL) {
-            r = ENOMEM;
-            goto err_end;
-        }
+    update_mapped_buf(fa->map);
 
-        memset(msg, 32, size-1);
-        msg[size-1] = '\0';
-        {
-            int n = write(fd, msg, size);
-            if (n == -1) {
-                r = errno;
-                goto err_end;
-            }
-        }
-    }
-
-    pagesize = getpagesize();
-    char *map = (char *) mmap(addr, pagesize, MAP_PRIVATE, PROT_READ | PROT_WRITE | PROT_EXEC, fd, 0);
-    if (map == NULL) {
-        r = errno;
-        goto err_end;
-    }
-
-    update_mapped_buf(map);
-
-    munmap(map, pagesize);
-err_end:
-    if (fd != -1)
-        close(fd);
+    close_addr_file(fa);
 
     return r;
 }
