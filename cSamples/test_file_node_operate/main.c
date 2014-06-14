@@ -56,7 +56,22 @@ struct fileinfo *fileinfo_new(unsigned char type, const char *name, const char *
 }
 
 #define MAX_NODE_NUM 16
-static unsigned int nodemap[MAX_NODE_NUM] = {0};
+static unsigned int locate_table[MAX_NODE_NUM] = {0};
+int add_locate_table_by_id(unsigned int id)
+{
+    if (id >= MAX_NODE_NUM) {
+        errno = ENOSPC;
+        return -1;
+    }
+
+    if (id == 0)
+        locate_table[0] = sizeof(locate_table);
+    else 
+        locate_table[id] = sizeof(locate_table) + sizeof(struct fileinfo);
+
+    return 0;
+}
+
 static unsigned int node_id = 0;
 
 struct node *node_new(struct fileinfo *fi)
@@ -102,12 +117,14 @@ int main(int argc, char **argv)
     fi = fileinfo_new(TYPE_FILE, "hello.txt", "hello-world");
     root->left = node_new(fi);
 
-    if (root) {
-        nodemap[0] = sizeof(nodemap);
-    }
+    if (root)
+        add_locate_table_by_id(root->id);
+    
+    fi = fileinfo_new(TYPE_FILE, "goodbye.txt", "bye! bye!");
+    root->right = node_new(fi);
 
     if (root->left)
-        nodemap[1] = sizeof(nodemap) + sizeof(struct fileinfo);
+        add_locate_table_by_id(root->left->id);
 
     {
         FILE *fp = fopen("./fsdisk.img", "wb");
@@ -117,18 +134,37 @@ int main(int argc, char **argv)
             return errno;
         }
 
-        n = fwrite(nodemap, sizeof(nodemap), 1, fp);
+#define ERR_FWRITE(ntimes) { \
+        if (n != 1) { \
+            rc = EINVAL; \
+            goto err_end; \
+        } \
+}
+        n = fwrite(locate_table, sizeof(locate_table), 1, fp);
+        ERR_FWRITE(n);
         n = fwrite(root->fi, sizeof(struct fileinfo), 1, fp);
+        ERR_FWRITE(n);
         printf("write root node(%d)\n", root->id);
         n = fwrite(root->left->fi, sizeof(struct fileinfo), 1, fp);
+        ERR_FWRITE(n);
+        printf("write node(%d)\n", root->left->id);
+        n = fwrite(root->right->fi, sizeof(struct fileinfo), 1, fp);
+        ERR_FWRITE(n);
         printf("write node(%d)\n", root->left->id);
 
         fclose(fp);
     }
 
 err_end:
-    if (root && root->left)
+    if (root && root->right) {
+        node_free(root->right);
+        root->right = NULL;
+    }
+
+    if (root && root->left) {
         node_free(root->left);
+        root->left = NULL;
+    }
 
     node_free(root);
 
