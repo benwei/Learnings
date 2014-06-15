@@ -83,7 +83,34 @@ void node_free(struct node *node)
     free(node);
 }
 
-int main(int argc, char **argv)
+int node_to_file(const char *image_name, struct node *root)
+{
+    FILE *fp = NULL;
+
+    if (root->left) {
+        nodemap[1] = sizeof(nodemap) + sizeof(struct fileinfo);
+    }
+
+    fp = fopen(image_name, "wb");
+    int n = 0;
+    if (fp == NULL) {
+        printf("file open failure");
+        return -1;
+    }
+
+    n = fwrite(nodemap, sizeof(nodemap), 1, fp);
+    n = fwrite(root->fi, sizeof(struct fileinfo), 1, fp);
+    printf("write root node(%d)\n", root->id);
+    n = fwrite(root->left->fi, sizeof(struct fileinfo), 1, fp);
+    printf("write node(%d)\n", root->left->id);
+
+    fclose(fp);
+
+    return 0;
+}
+
+
+int create_test_image(const char *image_name)
 {
     int rc = 0;
     struct node *root  = NULL;
@@ -106,25 +133,7 @@ int main(int argc, char **argv)
         nodemap[0] = sizeof(nodemap);
     }
 
-    if (root->left)
-        nodemap[1] = sizeof(nodemap) + sizeof(struct fileinfo);
-
-    {
-        FILE *fp = fopen("./fsdisk.img", "wb");
-        int n = 0;
-        if (fp == NULL) {
-            printf("file open failure");
-            return errno;
-        }
-
-        n = fwrite(nodemap, sizeof(nodemap), 1, fp);
-        n = fwrite(root->fi, sizeof(struct fileinfo), 1, fp);
-        printf("write root node(%d)\n", root->id);
-        n = fwrite(root->left->fi, sizeof(struct fileinfo), 1, fp);
-        printf("write node(%d)\n", root->left->id);
-
-        fclose(fp);
-    }
+    rc = node_to_file(image_name, root);
 
 err_end:
     if (root && root->left)
@@ -132,5 +141,17 @@ err_end:
 
     node_free(root);
 
+    return rc;
+}
+
+
+int main(int argc, char **argv)
+{
+    char *image_name = "./fsdisk.img";
+    int rc = create_test_image(image_name);
+    if (rc) {
+        fprintf(stderr, "create test image failure (%d)\n", rc);
+        return rc;
+    }
     return 0;
 }
