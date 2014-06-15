@@ -56,7 +56,22 @@ struct fileinfo *fileinfo_new(unsigned char type, const char *name, const char *
 }
 
 #define MAX_NODE_NUM 16
-static unsigned int nodemap[MAX_NODE_NUM] = {0};
+static unsigned int locate_table[MAX_NODE_NUM] = {0};
+int add_locate_table_by_id(unsigned int id)
+{
+    if (id >= MAX_NODE_NUM) {
+        errno = ENOSPC;
+        return -1;
+    }
+
+    if (id == 0)
+        locate_table[0] = sizeof(locate_table);
+    else 
+        locate_table[id] = sizeof(locate_table) + sizeof(struct fileinfo);
+
+    return 0;
+}
+
 static unsigned int node_id = 0;
 
 struct node *node_new(struct fileinfo *fi)
@@ -83,30 +98,41 @@ void node_free(struct node *node)
     free(node);
 }
 
+#define WRITE_FILE_CHECK(ntimes, deftimes) if(ntimes != deftimes) { \
+    errno = EINVAL ; rc=-1;  goto err_end; \
+}
+
 int node_to_file(const char *image_name, struct node *root)
 {
     FILE *fp = NULL;
+    int n = 0, rc = 0;
 
     if (root->left) {
-        nodemap[1] = sizeof(nodemap) + sizeof(struct fileinfo);
+        locate_table[1] = sizeof(locate_table) + sizeof(struct fileinfo);
     }
 
     fp = fopen(image_name, "wb");
-    int n = 0;
     if (fp == NULL) {
         printf("file open failure");
         return -1;
     }
 
-    n = fwrite(nodemap, sizeof(nodemap), 1, fp);
+    n = fwrite(locate_table, sizeof(locate_table), 1, fp);
+    WRITE_FILE_CHECK(n, 1);
     n = fwrite(root->fi, sizeof(struct fileinfo), 1, fp);
+    WRITE_FILE_CHECK(n, 1);
     printf("write root node(%d)\n", root->id);
     n = fwrite(root->left->fi, sizeof(struct fileinfo), 1, fp);
-    printf("write node(%d)\n", root->left->id);
+    WRITE_FILE_CHECK(n, 1);
+    printf("write left node(%d)\n", root->left->id);
+    n = fwrite(root->right->fi, sizeof(struct fileinfo), 1, fp);
+    WRITE_FILE_CHECK(n, 1);
+    printf("write right node(%d)\n", root->right->id);
 
+err_end:
     fclose(fp);
 
-    return 0;
+    return rc;
 }
 
 
@@ -129,15 +155,24 @@ int create_test_image(const char *image_name)
     fi = fileinfo_new(TYPE_FILE, "hello.txt", "hello-world");
     root->left = node_new(fi);
 
-    if (root) {
-        nodemap[0] = sizeof(nodemap);
-    }
+    if (root)
+        add_locate_table_by_id(root->id);
+    
+    fi = fileinfo_new(TYPE_FILE, "goodbye.txt", "bye! bye!");
+    root->right = node_new(fi);
 
     rc = node_to_file(image_name, root);
 
 err_end:
-    if (root && root->left)
+    if (root && root->right) {
+        node_free(root->right);
+        root->right = NULL;
+    }
+
+    if (root && root->left) {
         node_free(root->left);
+        root->left = NULL;
+    }
 
     node_free(root);
 
