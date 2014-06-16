@@ -1,4 +1,4 @@
-CFILES = main.c 
+CFILES = main.c bxnode.c
 OBJS = $(CFILES:.c=.o)
 
 CFLAGS =-Wall -std=c99 -pedantic 
