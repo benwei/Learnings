@@ -51,6 +51,17 @@ err_end:
     return rc;
 }
 
+int load_test_image(const char *image_name)
+{
+    struct node *root = NULL;
+    printf("node_to_file(%s)\n", image_name);
+    int rc = file_to_node(image_name, &root);
+    if (rc != 0)
+        return -1;
+
+    printf("read root node(%d) -> %s\n", root->id, root->fi->name);
+    return rc;
+}
 
 int main(int argc, char **argv)
 {
@@ -60,5 +71,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "create test image failure (%d)\n", rc);
         return rc;
     }
-    return 0;
+
+
+    return load_test_image(image_name);
 }

@@ -76,7 +76,7 @@ void node_free(struct node *node)
     free(node);
 }
 
-#define WRITE_FILE_CHECK(ntimes, deftimes) if(ntimes != deftimes) { \
+#define FILEOP_CHECK(ntimes, deftimes) if(ntimes != deftimes) { \
     errno = EINVAL ; rc=-1;  goto err_end; \
 }
 
@@ -96,16 +96,50 @@ int node_to_file(const char *image_name, struct node *root)
     }
 
     n = fwrite(locate_table, sizeof(locate_table), 1, fp);
-    WRITE_FILE_CHECK(n, 1);
+    FILEOP_CHECK(n, 1);
     n = fwrite(root->fi, sizeof(struct fileinfo), 1, fp);
-    WRITE_FILE_CHECK(n, 1);
+    FILEOP_CHECK(n, 1);
     printf("write root node(%d)\n", root->id);
     n = fwrite(root->left->fi, sizeof(struct fileinfo), 1, fp);
-    WRITE_FILE_CHECK(n, 1);
+    FILEOP_CHECK(n, 1);
     printf("write left node(%d)\n", root->left->id);
     n = fwrite(root->right->fi, sizeof(struct fileinfo), 1, fp);
-    WRITE_FILE_CHECK(n, 1);
+    FILEOP_CHECK(n, 1);
     printf("write right node(%d)\n", root->right->id);
+
+err_end:
+    fclose(fp);
+
+    return rc;
+}
+
+int file_to_node(const char *image_name, struct node **rroot)
+{
+    FILE *fp = NULL;
+    int n = 0, rc = 0;
+    struct node *root = NULL;
+    struct fileinfo *pfi = NULL;
+
+    fp = fopen(image_name, "rb");
+    if (fp == NULL) {
+        printf("file open failure");
+        return -1;
+    }
+
+    n = fread(&locate_table, sizeof(locate_table), 1, fp);
+    FILEOP_CHECK(n, 1);
+
+    root = (struct node *) malloc(sizeof(struct node));
+    root->left = NULL;
+    root->right = NULL;
+    root->id = 0;
+    pfi = (struct fileinfo *) malloc(sizeof(struct fileinfo));
+
+    n = fread(pfi, sizeof(struct fileinfo), 1, fp);
+    FILEOP_CHECK(n, 1);
+    root->fi = pfi;
+    
+    *rroot = root;
 
 err_end:
     fclose(fp);

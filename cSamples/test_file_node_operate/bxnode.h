@@ -37,5 +37,6 @@ struct node *node_new(struct fileinfo *fi);
 void node_free(struct node *node);
 
 int node_to_file(const char *image_name, struct node *root);
+int file_to_node(const char *image_name, struct node **rroot);
 #endif /* _BXNODE_H */
 
