@@ -1,7 +1,7 @@
 CFILES = main.c bxnode.c
 OBJS = $(CFILES:.c=.o)
 
-CFLAGS =-Wall -std=c99 -pedantic 
+CFLAGS =-Wall -std=c99 -pedantic -g
 LDFLAGS =
 
 TARGET = test-sample-fs

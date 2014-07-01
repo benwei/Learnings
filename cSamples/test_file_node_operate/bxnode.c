@@ -116,7 +116,7 @@ err_end:
 int file_to_node(const char *image_name, struct node **rroot)
 {
     FILE *fp = NULL;
-    int n = 0, rc = 0;
+    int n = 0, i = 0, rc = 0;
     struct node *root = NULL;
     struct fileinfo *pfi = NULL;
 
@@ -133,14 +133,40 @@ int file_to_node(const char *image_name, struct node **rroot)
     root->left = NULL;
     root->right = NULL;
     root->id = 0;
-    pfi = (struct fileinfo *) malloc(sizeof(struct fileinfo));
 
+    pfi = (struct fileinfo *) malloc(sizeof(struct fileinfo));
     n = fread(pfi, sizeof(struct fileinfo), 1, fp);
     FILEOP_CHECK(n, 1);
     root->fi = pfi;
-    
-    *rroot = root;
 
+    // FIXME: error handling
+    for (i = 1; i < sizeof(locate_table)/sizeof(locate_table[0]); ++i)
+    {
+        if (locate_table[i] != 0 && i < 3) {
+            struct node *bxnode= (struct node *) malloc(sizeof(struct node));
+            if (!bxnode) {
+                rc = ENOMEM;
+                goto err_end;
+            }
+            bxnode->id = i;
+            bxnode->left = NULL;
+            bxnode->right = NULL;
+            bxnode->fi = NULL;
+            if (!bxnode) {
+                rc = ENOMEM;
+                goto err_end;
+            }
+
+            pfi = (struct fileinfo *) malloc(sizeof(struct fileinfo));
+            n = fread(pfi, sizeof(struct fileinfo), 1, fp);
+            FILEOP_CHECK(n, 1);
+            if (i == 1)
+                root->left = bxnode;
+            else if (i == 2)
+                root->right = bxnode;
+        }
+    }
+    *rroot = root;
 err_end:
     fclose(fp);
 

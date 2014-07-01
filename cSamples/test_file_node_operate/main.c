@@ -51,6 +51,14 @@ err_end:
     return rc;
 }
 
+void dump_node(struct node *node)
+{
+    if (!node)
+        return ;
+
+    printf("read node(%d) -> %s\n", node->id, node->fi->name);
+}
+
 int load_test_image(const char *image_name)
 {
     struct node *root = NULL;
@@ -60,6 +68,8 @@ int load_test_image(const char *image_name)
         return -1;
 
     printf("read root node(%d) -> %s\n", root->id, root->fi->name);
+    dump_node(root->left);
+    dump_node(root->right);
     return rc;
 }
 

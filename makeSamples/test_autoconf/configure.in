@@ -1,0 +1,9 @@
+AC_INIT(hello.c)
+AM_INIT_AUTOMAKE(hello, 1.0)
+AC_CONFIG_SRCDIR([hello.c])
+AC_CONFIG_HEADERS([config.h])
+
+AC_PROG_CC
+AC_PROG_RANLIB
+
+AC_OUTPUT([Makefile lib/Makefile])
