@@ -2,7 +2,6 @@
 depends ?= $(OBJS:.o=.p)
 
 .c.o:
-#$(CC) -c $(CFLAGS) -o $@ $<
 	$(CC) -MMD -MF ${@:.o=.p} -c $(CFLAGS) -o $@ $<
 
 .cpp.o:
