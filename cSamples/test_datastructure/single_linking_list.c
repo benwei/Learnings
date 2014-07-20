@@ -1,5 +1,5 @@
 /* 2014-07 written by Ben Wei 
- * License: Attribution-NonCommercial-NoDerivs CC BY-NC-ND
+ * License: Attribution-NonCommercial-ShareAlike CC BY-NC-SA
  * example code for single linking list
  **/
 
