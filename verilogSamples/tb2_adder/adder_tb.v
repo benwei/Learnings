@@ -10,6 +10,8 @@ initial
 begin
     counter <= 0;
     clk <=0;
+    $dumpfile("test.vcd");
+    $dumpvars(0,adder_tb);
 
     begin: forever_test
         forever
@@ -19,6 +21,7 @@ begin
             if (counter == `Length)
             begin
                 disable forever_test;
+                $finish;
             end
         end
     end

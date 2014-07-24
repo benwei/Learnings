@@ -10,5 +10,9 @@ $(TARGET): $(FILES)
 
 run: $(TARGET)
 	./$(TARGET)
+
+wave: run
+	gtkwave tb2.gtkw
+
 clean:
-	rm -f $(TARGET) 
+	rm -f $(TARGET) *.vcd
