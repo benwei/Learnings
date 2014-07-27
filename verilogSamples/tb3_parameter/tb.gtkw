@@ -1,0 +1,23 @@
+[*]
+[*] GTKWave Analyzer v3.3.57 (w)1999-2014 BSI
+[*] Sun Jul 27 18:02:52 2014
+[*]
+[dumpfile] "test.vcd"
+[dumpfile_mtime] "Sun Jul 27 18:02:05 2014"
+[dumpfile_size] 2426
+[savefile] "tb.gtkw"
+[timestart] 0
+[size] 1208 643
+[pos] -1 -1
+*-15.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] adder_tb.
+[sst_width] 203
+[signals_width] 94
+[sst_expanded] 1
+[sst_vpaned_height] 172
+@22
+adder_tb.DUT.A[5:0]
+adder_tb.DUT.B[5:0]
+adder_tb.DUT.sum[6:0]
+[pattern_trace] 1
+[pattern_trace] 0
