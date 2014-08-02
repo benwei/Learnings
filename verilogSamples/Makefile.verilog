@@ -1,0 +1,20 @@
+VC = iverilog
+
+all: $(TARGET)
+
+$(TARGET): $(FILES)
+	$(VC) $(VCFLAGS) -o $(TARGET) $(FILES)
+
+run: $(TARGET)
+	./$(TARGET)
+
+wave: $(TARGET)
+	@if [ -f "$(GTKW)" ]; then \
+		./$(TARGET) ; \
+		gtkwave $(GTKW); \
+	else \
+		echo "please locate your gtkwave save file in GTKW variable"; \
+	fi
+
+clean:
+	rm -f $(TARGET) *.vcd
