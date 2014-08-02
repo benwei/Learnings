@@ -1,0 +1,26 @@
+[*]
+[*] GTKWave Analyzer v3.3.57 (w)1999-2014 BSI
+[*] Sat Aug  2 17:41:14 2014
+[*]
+[dumpfile] "test.vcd"
+[dumpfile_mtime] "Sat Aug  2 17:40:55 2014"
+[dumpfile_size] 1549
+[savefile] "tb.gtkw"
+[timestart] 0
+[size] 1208 643
+[pos] -1 -1
+*-14.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] rom_tb.
+[sst_width] 203
+[signals_width] 120
+[sst_expanded] 1
+[sst_vpaned_height] 172
+@22
+rom_tb.DUT.addr[3:0]
+rom_tb.DUT.addri[3:0]
+@28
+rom_tb.DUT.clk
+@22
+rom_tb.DUT.dout[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
