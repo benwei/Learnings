@@ -30,6 +30,18 @@ static int work_wait_exit_counter = MAX_WORKERS;
 thread_routine thread_routines[MAX_RUNNING_THREADS];
 static int task_queue_count = 0;
 
+struct item {
+    void *data;
+    struct item *next;
+};
+
+struct myqueue {
+    pthread_cond_t cond;
+    pthread_mutex_t lock;
+    struct item *head;
+    struct item *tail;
+};
+
 static int new_task_to_queue(void)
 {
     task_queue_count++;
