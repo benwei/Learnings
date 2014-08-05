@@ -15,3 +15,4 @@ lljsSamples/LLJS
 *.log
 output
 prebuilt/
+*.p
