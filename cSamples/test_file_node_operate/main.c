@@ -56,6 +56,10 @@ void dump_node(struct node *node)
     if (!node)
         return ;
 
+    if (!node->fi) {
+        printf("node(%d)->fi should not be empty\n", node->id);
+        return;
+    }
     printf("read node(%d) -> %s\n", node->id, node->fi->name);
 }
 
