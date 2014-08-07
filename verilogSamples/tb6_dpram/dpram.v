@@ -24,40 +24,46 @@ module dpram(
 reg [7:0] maddr[7:0];
 reg [7:0] addrae, addrbe;
 reg [7:0] addra1, addrb1;
+reg [7:0] i,j;
+
+assign douta = (wea == `READ) ? maddr[addrae]: 8'hxx;
+assign doutb = (web == `READ) ? maddr[addrbe]: 8'hxx;
 
 always @(posedge clka)
 begin
-    if(wea == `WRITE) maddr[addra] <= dina;
-end
-
-always @(posedge clkb)
-begin
-    if(web == `WRITE) maddr[addrb] <= dinb;
+    if(wea == `WRITE)
+        maddr[addra] <= dina;
+    else
+        maddr[addra] <= maddr[addra];
 end
 
 always @(posedge clka)
 begin
     if (wea == `READ) begin
-    addra1 <= addra;
-    addrae <= addra1;
+        addra1 <= addra;
+        addrae <= addra1;
     end else begin
-    addra1 <= addra1;
-    addrae <= addrae;
+        addra1 <= addra1;
+        addrae <= addrae;
     end
 end
 
 always @(posedge clkb)
 begin
-    if (web == `READ) begin
-    addrb1 <= addrb;
-    addrbe <= addrb1;
-    end else begin
-    addrb1 <= addrb1;
-    addrbe <= addrbe;
-    end
+    if(web == `WRITE) maddr[addrb] <= dinb;
+    else
+        maddr[addrb] <= maddr[addrb];
 end
 
-assign douta = (wea == `READ) ? maddr[addrae]: 8'hxx;
-assign doutb = (web == `READ) ? maddr[addrbe]: 8'hxx;
+always @(posedge clkb)
+begin
+    if (web == `READ) begin
+        addrb1 <= addrb;
+        addrbe <= addrb1;
+    end else begin
+        addrb1 <= addrb1;
+        addrbe <= addrbe;
+    end
+end
 
 endmodule
