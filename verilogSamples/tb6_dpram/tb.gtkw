@@ -1,0 +1,34 @@
+[*]
+[*] GTKWave Analyzer v3.3.57 (w)1999-2014 BSI
+[*] Thu Aug  7 16:50:21 2014
+[*]
+[dumpfile] "/Volumes/BOS/myroot/src/github/Learnings/verilogSamples/tb6_dpram/test.vcd"
+[dumpfile_mtime] "Thu Aug  7 16:49:24 2014"
+[dumpfile_size] 2251
+[savefile] "/Volumes/BOS/myroot/src/github/Learnings/verilogSamples/tb6_dpram/tb.gtkw"
+[timestart] 0
+[size] 1208 643
+[pos] -1 -1
+*-14.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 203
+[signals_width] 126
+[sst_expanded] 1
+[sst_vpaned_height] 172
+@28
+dpram_tb.clk
+@23
+dpram_tb.counter[7:0]
+@22
+dpram_tb.addra[7:0]
+dpram_tb.dina[7:0]
+dpram_tb.douta[7:0]
+@28
+dpram_tb.wea
+@22
+dpram_tb.addrb[7:0]
+dpram_tb.dinb[7:0]
+dpram_tb.doutb[7:0]
+@28
+dpram_tb.web
+[pattern_trace] 1
+[pattern_trace] 0
