@@ -48,11 +48,15 @@ begin
     end
 end
 
+reg [4:0] m;
+
 always @(posedge clkb)
 begin
     if(web == `WRITE) maddr[addrb] <= dinb;
     else
         maddr[addrb] <= maddr[addrb];
+    for (m = 1 ; m < 9 ; m = m + 1)
+       $display("%x", maddr[m]);
 end
 
 always @(posedge clkb)

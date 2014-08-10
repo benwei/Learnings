@@ -42,7 +42,7 @@ begin
     if (counter >= 16) #1 $finish;
 end
 
-always @(*)
+always @(negedge clk)
 begin
     case (counter)
     1 : begin  addra <= 8'h01; dina <= 8'ha0; wea <= `WRITE;
