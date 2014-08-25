@@ -55,7 +55,7 @@ begin
     if(web == `WRITE) maddr[addrb] <= dinb;
     else
         maddr[addrb] <= maddr[addrb];
-    for (m = 1 ; m < 9 ; m = m + 1)
+    for (m = 0 ; m < 8; m = m + 1)
        $display("%x", maddr[m]);
 end
 
