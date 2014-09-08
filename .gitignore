@@ -16,3 +16,4 @@ lljsSamples/LLJS
 output
 prebuilt/
 *.p
+test_autoconf
