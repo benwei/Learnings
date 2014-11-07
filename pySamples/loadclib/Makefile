@@ -1,6 +1,6 @@
 # this sample is tested on cygwin + windows xp
 include ../../mk.defines
-CFLAGS = -Wall
+CFLAGS = -Wall -fPIC
 CFILES = main.c
 OBJS= $(CFILES:.c=.o)
 LIBNAME= libtest
