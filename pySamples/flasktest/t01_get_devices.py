@@ -52,4 +52,7 @@ api.add_resource(Device,          '/devices/<string:device_id>')
 api.add_resource(DevicesGroups,   '/groups')
 
 if __name__ == '__main__':
+    kwargs = {"host": "0.0.0.0",
+              "port": bconfig.port
+             }
     app.run(debug=True, host="0.0.0.0")
