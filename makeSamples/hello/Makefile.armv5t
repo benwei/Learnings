@@ -1,0 +1,20 @@
+
+# sample makefile of cross compling for ARM
+# make -f Makefile.armv5t
+CFLAGS = -march=armv5t -mthumb
+
+# CROSS_COMPILE ?= arm-linux-gnueabihf-
+# build on debian with arm-linux-gnueabi toolchain
+CROSS_COMPILE ?= arm-linux-gnueabi-
+CC=$(CROSS_COMPILE)gcc-4.7
+
+all: hello
+
+.c.o:
+	$(CC) -c $< $(CFLAGS)
+
+hello: hello.o
+	$(CC) -o $@ $^ $(LDFLAGS)
+
+clean:
+	rm -f *.o hello
