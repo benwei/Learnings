@@ -1,3 +1,4 @@
+# the generice purpose for sample make script by ben@staros.mobi
 
 depends ?= $(OBJS:.o=.p)
 
