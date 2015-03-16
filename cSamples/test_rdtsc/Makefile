@@ -1,4 +1,5 @@
-PLATFORM=$(shell uname -s)
+include ../Makefile.defines
+
 CFLAGS=-O2 -Wall -I. -std=c99
 CFLAGS+= -D_BSD_SOURCE  # usleep()
 

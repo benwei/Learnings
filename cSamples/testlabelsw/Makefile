@@ -1,8 +1,7 @@
-SHELL=bash
-OS=$(shell uname -s)
+include ../Makefile.defines
 
 ifeq ($(CROSS),1)
-ifeq ($(OS),Darwin)
+ifeq ($(PLATFORM),Darwin)
 	CROSS_COMPILE=/usr/local/gcc-4.5.2-for-linux64/bin/x86_64-pc-linux-
 	CC=$(CROSS_COMPILE)gcc
 	AS=$(CROSS_COMPILE)as

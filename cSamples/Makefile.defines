@@ -1,0 +1,2 @@
+SHELL=bash
+PLATFORM=$(shell uname -s)
