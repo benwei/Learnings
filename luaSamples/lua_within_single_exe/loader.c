@@ -29,7 +29,12 @@ static int test_myadd(lua_State *L)
 int main(int argc, char **argv)
 {
     int status;
+    /* both of following initial method works well */
+#ifdef USING_luaL
     lua_State *L = luaL_newstate();
+#else
+    lua_State *L = lua_open();
+#endif
     luaL_openlibs(L);
     lua_getglobal(L, "require");
     lua_pushliteral(L, "main");
