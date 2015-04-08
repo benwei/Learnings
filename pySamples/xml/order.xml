@@ -1,0 +1,5 @@
+<products>
+<product name="cpu" memo="i7-860">2000</product>
+<product name="ram" memo="8GB">1500</product>
+<product name="hdd" memo="8TB">10000</product>
+</products>
