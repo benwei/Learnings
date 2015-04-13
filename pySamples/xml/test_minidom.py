@@ -21,7 +21,7 @@ class OrderInvoice:
                 print "%-4s => %8s %8s" % (p.attributes['name'].value, \
                     p.attributes['memo'].value, "$%s" % p.childNodes[0].nodeValue)
                 self.fee = self.fee + int(p.childNodes[0].nodeValue)
-            else:        
+            else:
                 print "%-4s => %8s" % (p.attributes['name'].value, \
                     p.attributes['memo'].value)
 
