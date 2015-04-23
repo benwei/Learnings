@@ -1,3 +1,20 @@
+//  DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+//  Version 2, December 2004
+//
+//  Copyright (C) 2015 Ben Wei<ben@juluos.org>
+//
+//  Everyone is permitted to copy and distribute verbatim or modified
+//  copies of this license document, and changing it is allowed as long
+//  as the name is changed.
+//
+//  DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+//  TERMS AND CONDITIONS FOR COPYING,
+//  DISTRIBUTION AND MODIFICATION
+//
+//  0. You just DO WHAT THE FUCK YOU WANT TO.
+// --------------------------------------------------------------------
+// alu code dwexperiments v1
+
 `define OPERAND_IN8   input [7:0]
 `define OPERAND_IN16  input [15:0]
 
