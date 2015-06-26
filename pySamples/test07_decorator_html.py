@@ -18,6 +18,11 @@ class paddiv(padbase):
     def __init__(self, content_handler):
         super().__init__(content_handler)
 
+class padp(padbase):
+    TAG='p'
+    def __init__(self, content_handler):
+        padbase.__init__(self, content_handler)
+
 @padbold
 def genhtml(msg, b):
     return msg + str(b)
@@ -26,5 +31,10 @@ def genhtml(msg, b):
 def gendiv(msg, b):
     return msg + str(b)
 
+@padp
+def genp(msg, b):
+    return msg + str(b)
+
 print("%s" % genhtml("html bold", 6))
 print("%s" % gendiv("html div", 6))
+print("%s" % genp("html div", 6))
