@@ -5,7 +5,7 @@ class entryDisp(object):
         self.f = f;
 
     def __call__(self, *args):
-        print "called %s" % self.f.__name__
+        print("called %s" % self.f.__name__)
         r = self.f(*args)
         return r
 
@@ -23,7 +23,7 @@ class entryArgs(object):
             self.arg2 = 0
 
     def __call__(self, f):
-        print "called %s" % (f.__name__)
+        print("called %s" % (f.__name__))
 
         def func_call_2(arg):
             return "%s => %d" % (arg,  (self.arg1 + self.arg2));
@@ -39,13 +39,13 @@ def test2(arg):
 def test3(arg):
     return "test2(%d)" % arg
 
-print "--- main ---"
+print("--- main ---")
 
 # equal entryDisp(test(100))
-print test1(100)
+print(test1(100))
 
 # equal entryArg2(5,9)(test2(200));
-print test2(200)
+print(test2(200))
 
 # equal entryArg2(5,9)(test2(200));
-print test3(300)
+print(test3(300))
