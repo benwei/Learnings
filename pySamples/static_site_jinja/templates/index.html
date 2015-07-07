@@ -1,0 +1,19 @@
+<!-- templates/index.html -->
+{% extends "_base.html" %}
+{% block body %}
+<h1>Hello world!</h1>
+<p>This is an jinja2 example web page for staticjinja</p>
+<h3>list of the vars</h3>
+<ul>
+	{% for var in vars %}
+	<li>{{ var }}</li>
+	{% endfor %}
+</ul>
+<div>
+	{{static_root}}
+</div>
+{% endblock %}
+
+{% block footer %}
+my footer ---- overwrited
+{% endblock %}
