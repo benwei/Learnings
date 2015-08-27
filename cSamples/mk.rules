@@ -16,9 +16,10 @@ else
 endif
 
 run: $(OBJS) $(TARGET)
-	./$(TARGET) $(RUN_ARGS)
+	$(RUNENV) ./$(TARGET) $(RUN_ARGS)
 
 clean:
 	@rm -f $(TARGET) *.o $(depends) $(CLEAN_FILES)
+	-make clean-others
 
 -include $(depends)
