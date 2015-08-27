@@ -8,4 +8,4 @@ TARGET= c-sample-syntax-switch
 
 all: $(TARGET)
 
-include ../mk.rules
+include ../rules.mk

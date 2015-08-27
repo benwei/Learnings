@@ -9,4 +9,4 @@ CLEAN_FILES = *.img
 
 all: $(TARGET)
 
-include ../mk.rules
+include ../rules.mk

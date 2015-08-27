@@ -5,4 +5,4 @@ TARGET=testnum
 
 all: run
 
-include ../mk.rules
+include ../rules.mk

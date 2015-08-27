@@ -10,4 +10,4 @@ TARGET = test_mmap
 
 all: $(TARGET)
 
-include ../mk.rules
+include ../rules.mk

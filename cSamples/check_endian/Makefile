@@ -5,5 +5,5 @@ TARGET=check_endian
 
 all:  run
 
-include ../mk.rules
+include ../rules.mk
 

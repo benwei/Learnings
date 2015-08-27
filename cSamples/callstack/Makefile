@@ -5,4 +5,4 @@ TARGET=callstack
 
 all: run
 
-include ../mk.rules
+include ../rules.mk

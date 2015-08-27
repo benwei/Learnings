@@ -6,4 +6,4 @@ run: t1
 	./t1
 
 clean:
-	rm t1
+	@rm -f t1

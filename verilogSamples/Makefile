@@ -5,4 +5,4 @@ all:
 
 clean: mk-clean
 
-include ../mk.rules
+include ../rules.mk

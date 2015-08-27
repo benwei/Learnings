@@ -15,4 +15,4 @@ all: $(LIBCUINTA) $(TARGET)
 $(LIBCUINTA):
 	sh cunit_setup.sh
 
-include ../mk.rules
+include ../rules.mk

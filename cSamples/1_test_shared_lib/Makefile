@@ -15,11 +15,11 @@ RUNENV = LD_LIBRARY_PATH=.
 
 TARGET= c-shared-lib
 
-all: $(LIB_TARGET) $(TARGET)
+all: $(LIB_TARGET) $(TARGET) clean-others
 
 -include $(LIB_OBJS:.o=.p)
 
-include ../mk.rules
+include ../rules.mk
 
 $(LIB_OBJS): %.o:%.c
 	$(CC) -MMD -MF ${@:.o=.p} -c -fPIC $< -o $@ 

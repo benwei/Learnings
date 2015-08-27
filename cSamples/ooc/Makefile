@@ -9,4 +9,4 @@ TARGET = ooc_point
 
 all: $(TARGET)
 
-include ../mk.rules
+include ../rules.mk

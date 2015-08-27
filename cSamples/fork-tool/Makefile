@@ -5,7 +5,7 @@ TARGET=case_fork
 
 all: run
 
-include ../mk.rules
+include ../rules.mk
 
 leak-check:
 	valgrind --leak-check=full ./$(TARGET)

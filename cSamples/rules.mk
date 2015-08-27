@@ -20,6 +20,5 @@ run: $(OBJS) $(TARGET)
 
 clean:
 	@rm -f $(TARGET) *.o $(depends) $(CLEAN_FILES)
-	-make clean-others
 
 -include $(depends)

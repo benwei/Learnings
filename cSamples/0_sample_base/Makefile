@@ -8,4 +8,4 @@ TARGET= c-sample-base
 
 all: $(TARGET)
 
-include ../mk.rules
+include ../rules.mk

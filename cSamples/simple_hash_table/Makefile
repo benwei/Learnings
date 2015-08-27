@@ -11,4 +11,4 @@ TARGET = chash
 
 all: $(TARGET)
 
-include ../mk.rules
+include ../rules.mk

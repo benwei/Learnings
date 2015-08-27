@@ -4,4 +4,4 @@ all: mk-nothing
 
 clean: mk-clean
 
-include ./mk.rules
+include ./rules.mk

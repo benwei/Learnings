@@ -9,4 +9,4 @@ TARGET = cbst
 
 all: $(TARGET)
 
-include ../mk.rules
+include ../rules.mk

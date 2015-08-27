@@ -5,4 +5,4 @@ TARGET=testfmt
 
 all: run
 
-include ../mk.rules
+include ../rules.mk

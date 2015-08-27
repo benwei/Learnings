@@ -5,4 +5,4 @@ CFLAGS=-Wall -std=c99 -pedantic
 
 all: $(TARGET)
 
-include ../mk.rules
+include ../rules.mk
