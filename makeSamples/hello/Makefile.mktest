@@ -22,14 +22,14 @@ debug-enter = $(if $(debug_trace),\
 debug-leave = $(if $(debug_trace),$(warning Leaving $0))
 
 debug_trace=1
-define testvargs 
+define testvargs
 $(debug-enter)
 echo "$(0)($(1),$(2),$(3),$(4)) $($)"
 $(debug-leave)
 endef
 
 define build-vars
-	$(eval files:= hello.c $(tempfile)) 
+	$(eval files:= hello.c $(tempfile))
 	$(eval exes= $(files:.c=.exe))
 endef
 
