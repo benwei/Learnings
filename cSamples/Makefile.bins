@@ -23,19 +23,20 @@ build-targets:
 		make build-target BINFILE=$$target; \
 	done
 
-run: 
+run:
 	@for target in $(TARGETS) ; do \
 		argname="RUN_ARGS_$$target" ; \
+		make build-target BINFILE=$$target ; \
 		make test-single TARGET=$$target TARGET_ARGS="$${argname}" ; \
 	done
 
-test-single: 
+test-single:
 	@if [ ! -f $(TARGET) ]; then \
 		make build-target BINFILE=$(TARGET) ; \
-	fi 
+	fi
 	@echo "exec ./$(TARGET) $($(TARGET_ARGS))"; \
 	./$(TARGET) $($(TARGET_ARGS)) ; 
 
 clean:
-	rm -f $(TARGETS) *.o
+	rm -f $(TARGETS) *.o $(CLEAN_EXTRAS)
 
