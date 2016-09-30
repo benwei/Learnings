@@ -23,18 +23,22 @@ int open_addr_file(const char *filename, struct fileaddr **file_addr_handle)
     int r = 0;
     int pagesize = 0;
     void *addr = 0;
+    struct stat st;
     struct fileaddr *fa = (struct fileaddr *) malloc(sizeof(struct fileaddr));
+    int new_create = 0;
+
     if (fa == NULL) {
         errno = ENOMEM;
         return -1;
     }
 
-    int new_created = 0;
-    if (access(filename, W_OK) == -1) {
-        fa->fd = open(filename, O_CREAT | O_RDWR);
-        new_created = 1;
-    } else
+    r = stat(filename, &st);
+    if (r != 0) {
+        new_create = 1;
+        fa->fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, (mode_t) 0600);
+    } else {
         fa->fd = open(filename, O_RDWR);
+    }
 
     if (fa->fd == -1) {
         perror("open");
@@ -42,33 +46,26 @@ int open_addr_file(const char *filename, struct fileaddr **file_addr_handle)
         goto err_end;
     }
 
-    int size = 16;
-    if (new_created == 1) {
-        fchmod(fa->fd, 0777);
-        char *msg = (char *) malloc(size);
-        if (msg == NULL) {
-            r = ENOMEM;
+    /* The function getpagesize() returns the number of bytes
+     * in a memory page, where "page" is a fixed-length block,
+     * the unit for memory allocation and file mapping performed
+     * by mmap(2). */
+    pagesize = getpagesize();
+    int size = (pagesize > MAX_DATA_SIZE) ? MAX_DATA_SIZE: pagesize;
+    
+    if (new_create) {
+        r = ftruncate(fa->fd, size);
+        if (r != 0) {
+            perror("ftruncate");
             goto err_end;
         }
-
-        memset(msg, 32, size-1);
-        msg[size-1] = '\0';
-        {
-            int n = write(fa->fd, msg, size);
-            if (n == -1) {
-                r = errno;
-                goto err_end;
-            }
-        }
-        free(msg);
+        fsync(fa->fd);
     }
-
-    pagesize = getpagesize();
 
     /* Using MAP_SHARED makes the contents of file synchronized 
      * with data changes via mapped address
      **/
-    fa->map = (char *) mmap(addr, pagesize, PROT_READ | PROT_WRITE | PROT_EXEC, MAP_SHARED, fa->fd, 0);
+    fa->map = (char *) mmap(addr, size, PROT_READ | PROT_WRITE | PROT_EXEC, MAP_SHARED, fa->fd, 0);
     if (fa->map == (void *) -1) {
         r = -1;
         goto err_end;
