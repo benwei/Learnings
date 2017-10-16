@@ -36,9 +36,23 @@ static void test_my_min(void)
     CU_ASSERT_EQUAL(r, 6);
 }
 
+static void test_my_bit_op(void)
+{
+    int flags = 0xFF;
+    int pin = 0x01;
+    flags &= ~(pin);
+    CU_ASSERT_EQUAL(flags, 0XFE);
+    flags ^= 0x04;
+    CU_ASSERT_EQUAL(flags, 0XFA);
+    flags |= pin;
+    CU_ASSERT_EQUAL(flags, 0XFB);
+}
+
+
 static CU_TestInfo tests_success[] = {
   { "test_my_max", test_my_max},
   { "test_my_min", test_my_min},
+  { "test_my_bitop", test_my_bit_op},
   CU_TEST_INFO_NULL,
 };
 
