@@ -58,9 +58,9 @@ function doUpload(filename) {
     post_request.end();
   }
 
-  post_data.push(new Buffer(EncodeFieldPart(boundary, 'image_meta', 'origin'), 'ascii'));
-  post_data.push(new Buffer(EncodeFieldPart(boundary, 'object_id', 'sample-object-id'), 'ascii'));
-  post_data.push(new Buffer(EncodeFieldPart(boundary, 'Last-Modified', 'Tue, 15 Nov 1994 12:45:26 GMT'), 'ascii'));
+  post_data.push(new Buffer.from(EncodeFieldPart(boundary, 'image_meta', 'origin'), 'ascii'));
+  post_data.push(new Buffer.from(EncodeFieldPart(boundary, 'object_id', 'sample-object-id'), 'ascii'));
+  post_data.push(new Buffer.from(EncodeFieldPart(boundary, 'Last-Modified', 'Tue, 15 Nov 1994 12:45:26 GMT'), 'ascii'));
   var field_type = 'ascii';
   var encoding = {encoding: 'utf8'};
   if (isImage(mimetype) ) {
@@ -68,7 +68,7 @@ function doUpload(filename) {
     field_type = 'binary';
   }
 
-  post_data.push(new Buffer(EncodeFilePart(boundary, mimetype, 'upload', filename), field_type));
+  post_data.push(new Buffer.from(EncodeFilePart(boundary, mimetype, 'upload', filename), field_type));
 
   var file_reader = fs.createReadStream(filename, encoding);
   var file_contents = '';
@@ -76,8 +76,8 @@ function doUpload(filename) {
     file_contents += data;
   });
   file_reader.on('end', function(){
-    post_data.push(new Buffer(file_contents, field_type == 'binary' ? field_type: 'utf8'));
-    post_data.push(new Buffer("\r\n--" + boundary + "--"), 'ascii');
+    post_data.push(new Buffer.from(file_contents, field_type == 'binary' ? field_type: 'utf8'));
+    post_data.push(new Buffer.from("\r\n--" + boundary + "--"), 'ascii');
 
     MakePost(post_data, boundary);
   });
