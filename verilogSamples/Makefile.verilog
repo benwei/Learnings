@@ -1,4 +1,9 @@
 VC = iverilog
+ifeq (Darwin,$(shell uname -s))
+WAVETOOL=open
+else
+WAVETOOL=gtkwave
+endif
 
 all: $(TARGET)
 
@@ -11,7 +16,7 @@ run: $(TARGET)
 wave: $(TARGET)
 	@if [ -f "$(GTKW)" ]; then \
 		./$(TARGET) ; \
-		gtkwave $(GTKW); \
+		$(WAVETOOL) $(GTKW); \
 	else \
 		echo "please locate your gtkwave save file in GTKW variable"; \
 	fi
