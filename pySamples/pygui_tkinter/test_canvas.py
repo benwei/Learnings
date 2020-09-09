@@ -6,7 +6,7 @@ from tkinter import ttk
 
 class MockDataSource():
     def __init__(self):
-        self.index = 0 
+        self.index = 0
         self.data = [  53,   53,   53,   53,    53,   53,   53,   56,   53,   54,   59,  70,
                        83,  100,  128,   155,  187,  226,  263,  304,  344,  388,  432, 476,
                       525,  569,  616,   661,  703,  748,  792,  833,  873,  914,  953, 990,
@@ -24,11 +24,11 @@ class MockDataSource():
 class HeartbeatApp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
-        
+
         tk.Tk.__init__(self, *args, **kwargs)
 
         tk.Tk.wm_title(self, "Ben Test with Canvas")
-        
+
         container = tk.Frame(self, width=800, height=600)
         container.pack(side="top", fill="both", expand = True)
         container.grid_rowconfigure(0, weight=1)
@@ -52,6 +52,8 @@ class HeartbeatApp(tk.Tk):
         frame.tkraise()
 
     def update_clock(self):
+        # use label to display time, but abnormal flash,
+        # tested with another method by canvas.create_text is much better.
         now = time.strftime("%H:%M:%S")
         self.activeFrame.label_clock.configure(text=now)
         self.activeFrame.add(self.mockdata.next())
@@ -75,11 +77,13 @@ class DrawPage(tk.Frame):
         self.offset = 50
         self.top    = 50
         self.x1 = 100
-        self.y1 = 100 
+        self.y1 = 100
         self.c = tk.Canvas(self, width=self.maxwidth, height=self.maxheight, bg="white")
         self.c.place(x=10, y=10)
         self.c.pack()
         self.c.create_rectangle(10, 10, self.maxwidth,self.height, width=1)
+        self.mytext = self.c.create_text(self.maxwidth/2 - 5,self.height+10,fill="darkblue",font="Times 20 italic bold",
+                                text="000")
 
     def draw(self, y):
         self.x2, self.y2 = self.x1 + 1, y
@@ -91,6 +95,9 @@ class DrawPage(tk.Frame):
         if self.x1 > self.width:
             self.x1 = 0
             self.c.create_rectangle(self.offset-6, 12, self.offset+6, self.height-1, width=0, fill="white")
+        now = time.strftime("%H:%M:%S")
+        self.c.itemconfigure(self.mytext, text=now)
+
         self.c.update()
 
     def add(self, y):
