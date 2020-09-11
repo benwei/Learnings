@@ -3,10 +3,10 @@ target=testzoo
 all: $(target)
 
 $(target): $(target).cpp
-	g++ -g -o $@ $^
+	g++ -std=c++11 -g -o $@ $^
 
 run: $(target)
-	./$(target)
+	$(URUN) ./$(target) $(UARGS)
 
 drun: $(target)
 	gdb ./$(target)
