@@ -34,7 +34,7 @@ do
             echo "Bye! Bye!"
             break
             ;;
-        *) echo "enter wrong direction";
+        *) echo "enter wrong direction";;
     esac
 done
 
