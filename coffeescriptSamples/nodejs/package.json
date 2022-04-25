@@ -1,7 +1,9 @@
 {
   "author": "Ben Wei",
   "name": "coffeetaste",
-  "keywords": ["samples"],
+  "keywords": [
+    "samples"
+  ],
   "description": "pratice",
   "version": "1.0.0",
   "repository": "",
@@ -10,14 +12,14 @@
     "node": ">=0.8.0 < 0.9.0"
   },
   "dependencies": {
-    "nconf": "~0.5.1"
+    "nconf": "^0.12.0"
   },
   "bin": {
     "coffeetaste": "./coffeetaste.js"
   },
   "devDependencies": {
-    "coffee-script":    ">= 1.4.0",
-    "mocha":            ">= 1.2.1",
-    "should":           ">= 0.6.3"
+    "coffee-script": ">= 1.4.0",
+    "mocha": "^9.2.2",
+    "should": ">= 0.6.3"
   }
 }
