@@ -37,4 +37,4 @@ def genp(msg, b):
 
 print("%s" % genhtml("html bold", 6))
 print("%s" % gendiv("html div", 6))
-print("%s" % genp("html div", 6))
+print("%s" % genp("html p", 6))
