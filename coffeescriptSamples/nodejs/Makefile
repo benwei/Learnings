@@ -17,7 +17,7 @@ watch:
 	coffee -w src
 
 test:
-	mocha -R spec -r coffee-script -r should -u tdd test/tdd*.coffee
+	node_modules/mocha/bin/mocha -R spec -r coffee-script -r should -u tdd test/tdd*.coffee
 
 .PHONY: test
 
