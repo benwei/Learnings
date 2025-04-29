@@ -14,7 +14,7 @@
     "node": ">=0.8.0 < 0.9.0"
   },
   "dependencies": {
-    "formidable": "~3.2.4",
+    "formidable": "~3.5.4",
     "mime": "~1.4.1"
   },
   "bin": {
