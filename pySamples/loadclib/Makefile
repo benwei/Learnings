@@ -18,8 +18,8 @@ $(LIBNAME)$(DLLEXT): test.o
 	$(CC) -o $@ -shared $^
 
 run: foo$(EXEEXT)
-	@ export LD_LIBRARY_PATH=.; ./$^ ; \
-	  if [ $$? -eq 3 ]; then \
+	@export LD_LIBRARY_PATH=.; ./$^ ; \
+	if [ $$? -eq 3 ]; then \
 	  echo "Binary linking passed" ; \
 	  python main.py $(LIBNAME)$(DLLEXT) ; \
 	  if [ $$? -ne 0 ] ; then \
@@ -28,6 +28,8 @@ run: foo$(EXEEXT)
 	else \
 	  echo "Binary link failed" ; \
 	fi
+run-foo: 
+	@export LD_LIBRARY_PATH=. ; ./foo 
 clean:
 	rm -f foo$(EXEEXT) $(LIBNAME)$(DLLEXT)
 	rm -f *.o
